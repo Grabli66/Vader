@@ -5,12 +5,34 @@ unit Vader.Graphics.Pens;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils,
+  Vader.Graphics.Color;
 
-type TVPen = class
-end;
+const
+  DEFAULT_PEN_WIDTH = 1;
+
+type
+  TVPen = class
+  end;
+
+  { TVBasicPen }
+
+  TVBasicPen = class(TVPen)
+    fColor: TVColor;
+    fWidth: integer;
+  public
+    constructor Create(color: TVColor);
+    property Width: integer read fWidth write fWidth;
+  end;
 
 implementation
 
-end.
+{ TVBasicPen }
 
+constructor TVBasicPen.Create(color: TVColor);
+begin
+  fColor := color;
+  fWidth := DEFAULT_PEN_WIDTH;
+end;
+
+end.

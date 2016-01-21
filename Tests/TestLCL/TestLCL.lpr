@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, main, Vader.Graphics.Font
+  Forms, main, Vader.Graphics.Font, Vader.Graphics.Color
   { you can add units after this };
 
 {$R *.res}

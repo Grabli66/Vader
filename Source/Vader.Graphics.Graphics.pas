@@ -25,9 +25,9 @@ type
   public
     constructor Create(texture: TVTexture);
     destructor Destroy; override;
-    procedure SetBrush(brush: TVBrush);
-    procedure SetPen(pen: TVPen);
-    procedure SetFont(font: TVFont);
+    property Pen: TVPen read fPen write fPen;
+    property Brush: TVBrush read fBrush write fBrush;
+    property Font: TVFont read fFont write fFont;
     procedure DrawShape(shape: TVShape);
     procedure DrawString(x, y: integer; Text: WideString);
     procedure DrawImage(x, y: integer; image: TVTexture);
@@ -45,21 +45,6 @@ end;
 destructor TVGraphics.Destroy;
 begin
   inherited Destroy;
-end;
-
-procedure TVGraphics.SetBrush(brush: TVBrush);
-begin
-  fBrush := brush;
-end;
-
-procedure TVGraphics.SetPen(pen: TVPen);
-begin
-  fPen := pen;
-end;
-
-procedure TVGraphics.SetFont(font: TVFont);
-begin
-  fFont := font;
 end;
 
 procedure TVGraphics.DrawShape(shape: TVShape);
