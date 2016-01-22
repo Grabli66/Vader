@@ -6,6 +6,7 @@ interface
 
 uses
   Classes, SysUtils,
+  Vader.Graphics.Shapes,
   Vader.Graphics.Color;
 
 type
@@ -18,11 +19,13 @@ type
     fPixels: array of TVRGBAColor;
   public
     constructor Create(Width, Height: integer);
+    constructor Create(rect: TVRect); overload;
     destructor Destroy; override;
-    procedure SetPixel(x, y: integer; color: TVRGBAColor);
-    function GetPixel(x, y: integer): TVRGBAColor;
     property Width: integer read fWidth;
     property Height: integer read fHeight;
+    procedure SetPixel(x, y: integer; color: TVRGBAColor);
+    function GetPixel(x, y: integer): TVRGBAColor;
+    procedure CopyTo(x, y: integer; dest: TVTexture);
   end;
 
 implementation
@@ -34,6 +37,11 @@ begin
   fWidth := Width;
   fHeight := Height;
   SetLength(fPixels, Width * Height);
+end;
+
+constructor TVTexture.Create(rect: TVRect); overload;
+begin
+  Create(rect.Width, rect.Height);
 end;
 
 destructor TVTexture.Destroy;
@@ -53,6 +61,19 @@ end;
 function TVTexture.GetPixel(x, y: integer): TVRGBAColor;
 begin
   Result := fPixels[y * fWidth + x];
+end;
+
+procedure TVTexture.CopyTo(x, y: integer; dest: TVTexture);
+var
+  x1, y1: Integer;
+begin
+  for x1 := 0 to fWidth - 1 do
+  begin
+    for y1 := 0 to fHeight - 1 do
+    begin
+       dest.SetPixel(x1 + x, y1 + y, GetPixel(x1,y1));
+    end;
+  end;
 end;
 
 end.

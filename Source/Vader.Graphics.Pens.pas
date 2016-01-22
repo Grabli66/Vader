@@ -13,16 +13,23 @@ const
 
 type
   TVPen = class
+    private
+      fIsAntialiasing: Boolean;
+    public
+      property IsAntialiasing: Boolean read fIsAntialiasing write fIsAntialiasing;
   end;
 
   { TVBasicPen }
 
   TVBasicPen = class(TVPen)
+  private
     fColor: TVColor;
     fWidth: integer;
   public
     constructor Create(color: TVColor);
+    constructor Create(color: TVRGBAColor);
     property Width: integer read fWidth write fWidth;
+    property Color: TVColor read fColor write fColor;
   end;
 
 implementation
@@ -31,7 +38,13 @@ implementation
 
 constructor TVBasicPen.Create(color: TVColor);
 begin
-  fColor := color;
+  fColor := TVColor.Create(color.GetRGBA);
+  fWidth := DEFAULT_PEN_WIDTH;
+end;
+
+constructor TVBasicPen.Create(color: TVRGBAColor);
+begin
+  fColor := TVColor.Create(color);
   fWidth := DEFAULT_PEN_WIDTH;
 end;
 
