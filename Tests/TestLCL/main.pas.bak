@@ -71,16 +71,20 @@ var
   x, y: integer;
   c: TColor;
   l: TVRectangleShape;
+  circle: TVCircleShape;
   b: TVRect;
   col: TVColor;
   br: TVSolidBrush;
 begin
-  col:=TVColor.Create($FFFF0000);
+  col:=TVColor.Create($FF00AAAA);
   fGraphics.Brush := TVSolidBrush.Create(col);
-
-  l := TVRectangleShape.Create(10, 10,100,20);
+  circle:= TVCircleShape.Create(40, 20, 20);
+  l := TVRectangleShape.Create(10, 10, 100, 20);
   fGraphics.DrawShape(l);
   l.Free;
+  fGraphics.Brush := TVSolidBrush.Create(TVColor.Create($FF110000));
+  fGraphics.DrawShape(circle);
+  circle.Free;
 
   for x := 0 to fTexture.Width - 1 do
   begin

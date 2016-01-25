@@ -25,10 +25,17 @@ type
     fPen: TVBasicPen;
     fBrush: TVBrush;
     fFont: TVFont;
-    procedure ContourShape(shape: TVShape; texture: TVTexture; bounds: TVRect);
+    procedure ContourShape(shape: TVShape; texture: TVTexture;
+      bounds: TVRect; color: TVRGBAColor);
     procedure DrawSegment(segment: TVSegment; texture: TVTexture; bounds: TVRect);
-    procedure DrawLineSegment(segment: TVSegmentLine2D; texture: TVTexture; bounds: TVRect);
-    procedure DrawLineInternal(x0,y0,x1,y1: Integer; texture: TVTexture);
+    procedure DrawLineSegment(segment: TVSegmentLine2D; texture: TVTexture;
+      bounds: TVRect; color: TVRGBAColor);
+    procedure DrawCircleSegment(segment: TVSegmentCircle; texture: TVTexture;
+      bounds: TVRect; color: TVRGBAColor);
+    procedure DrawLineInternal(x0, y0, x1, y1: integer; texture: TVTexture;
+      color: TVRGBAColor);
+    procedure DrawCircleInternal(x, y, R: integer; texture: TVTexture;
+      color: TVRGBAColor);
     procedure FillShape(shape: TVShape; texture: TVTexture; bounds: TVRect);
   public
     constructor Create(texture: TVTexture);
@@ -62,13 +69,17 @@ end;
 
 destructor TVGraphics.Destroy;
 begin
-  if Assigned(fBrush) then fBrush.Free;
-  if Assigned(fPen) then fPen.Free;
-  if Assigned(fFont) then fFont.Free;
+  if Assigned(fBrush) then
+    fBrush.Free;
+  if Assigned(fPen) then
+    fPen.Free;
+  if Assigned(fFont) then
+    fFont.Free;
   inherited Destroy;
 end;
 
-procedure TVGraphics.DrawLineInternal(x0,y0,x1,y1: Integer; texture: TVTexture);
+procedure TVGraphics.DrawLineInternal(x0, y0, x1, y1: integer;
+  texture: TVTexture; color: TVRGBAColor);
 var
   dx, dy, i, sx, sy, check, e, nx, ny: integer;
 begin
@@ -87,7 +98,7 @@ begin
   e := 2 * dy - dx;
   for i := 0 to dx do
   begin
-    texture.SetPixel(nx, ny, fPen.Color.GetRGBA);
+    texture.SetPixel(nx, ny, color);
     if e >= 0 then
     begin
       if check = 1 then
@@ -104,29 +115,81 @@ begin
   end;
 end;
 
+procedure TVGraphics.DrawCircleInternal(x, y, R: integer; texture: TVTexture;
+  color: TVRGBAColor);
+var
+  x2, y2, error, delta: integer;
+begin
+  x2 := 0;
+  y2 := R;
+  delta := (1 - 2 * R);
+  error := 0;
+  while y2 >= 0 do
+  begin
+    texture.SetPixel(x + x2, y + y2, color);
+    texture.SetPixel(x + x2, y - y2, color);
+    texture.SetPixel(x - x2, y + y2, color);
+    texture.SetPixel(x - x2, y - y2, color);
+    error := 2 * (delta + y2) - 1;
+    if ((delta < 0) and (error <= 0)) then
+    begin
+      Inc(x2);
+      delta := delta + (2 * x2 + 1);
+      continue;
+    end;
+    error := 2 * (delta - x2) - 1;
+    if ((delta > 0) and (error > 0)) then
+    begin
+      Dec(y2);
+      delta := delta + (1 - 2 * y2);
+      continue;
+    end;
+    Inc(x2);
+    delta := delta + (2 * (x2 - y2));
+    Dec(y2);
+  end;
+end;
+
 procedure TVGraphics.DrawSegment(segment: TVSegment; texture: TVTexture; bounds: TVRect);
 begin
-  if segment is TVSegmentLine2D then begin
-    DrawLineSegment(TVSegmentLine2D(segment), texture, bounds);
+  if segment is TVSegmentLine2D then
+  begin
+    DrawLineSegment(TVSegmentLine2D(segment), texture, bounds, fPen.Color.GetRGBA);
+  end else if segment is TVSegmentCircle then begin
+    DrawCircleSegment(TVSegmentCircle(segment), texture, bounds, fPen.Color.GetRGBA);
   end;
 end;
 
 procedure TVGraphics.DrawLineSegment(segment: TVSegmentLine2D;
-  texture: TVTexture; bounds: TVRect);
-var x0,y0,x1,y1: Integer;
+  texture: TVTexture; bounds: TVRect; color: TVRGBAColor);
+var
+  x0, y0, x1, y1: integer;
 begin
-  x0:= segment.StartPos.x - bounds.x;
-  y0:= segment.StartPos.y - bounds.y;
-  x1:= segment.EndPos.x - bounds.x;
-  y1:= segment.EndPos.y - bounds.y ;
-  DrawLineInternal(x0,y0,x1,y1,texture);
+  x0 := segment.StartPos.x - bounds.x;
+  y0 := segment.StartPos.y - bounds.y;
+  x1 := segment.EndPos.x - bounds.x;
+  y1 := segment.EndPos.y - bounds.y;
+  DrawLineInternal(x0, y0, x1, y1, texture, color);
 end;
 
-procedure TVGraphics.ContourShape(shape: TVShape; texture: TVTexture; bounds: TVRect);
-var i, ln: integer;
-    segment: TVSegment;
+procedure TVGraphics.DrawCircleSegment(segment: TVSegmentCircle;
+  texture: TVTexture; bounds: TVRect; color: TVRGBAColor);
+var x0, y0: integer;
+begin
+  x0 := segment.Radius + 1;
+  y0 := segment.Radius + 1;
+  DrawCircleInternal(x0, y0, segment.Radius, texture, color);
+end;
+
+procedure TVGraphics.ContourShape(shape: TVShape; texture: TVTexture;
+  bounds: TVRect; color: TVRGBAColor);
+var
+  i, ln: integer;
+  segment: TVSegment;
+  circle: TVCircleShape;
 begin
   ln := Length(shape.Segments);
+
   for i := 0 to ln - 1 do
   begin
     segment := shape.Segments[i];
@@ -135,11 +198,16 @@ begin
 end;
 
 procedure TVGraphics.FillShape(shape: TVShape; texture: TVTexture; bounds: TVRect);
-var x, y, sx, sy: integer;
+var
+  x, y, sx, sy: integer;
   start, work: boolean;
   pixel: TVRGBAColor;
+  color: TVRGBAColor;
 begin
-  ContourShape(shape, texture, bounds);
+  if fBrush is TVSolidBrush then
+    color := (TVSolidBrush(fBrush)).Color.GetRGBA;
+
+  ContourShape(shape, texture, bounds, color);
 
   start := False;
   work := False;
@@ -153,6 +221,7 @@ begin
         start := True;
         sx := x;
         sy := y;
+        texture.SetPixel(sx, sy, color);
         Continue;
       end;
 
@@ -164,7 +233,7 @@ begin
       begin
         start := False;
         work := False;
-        DrawLineInternal(sx, sy, x, y, texture);
+        DrawLineInternal(sx, sy, x, y, texture, color);
       end;
     end;
   end;
@@ -179,8 +248,8 @@ var
 begin
   ln := Length(shape.Segments);
 
-  bounds:= shape.GetBounds;
-  tempTex:= TVTexture.Create(bounds);
+  bounds := shape.GetBounds;
+  tempTex := TVTexture.Create(bounds);
 
   // Fill shape
   if Assigned(fBrush) then
@@ -188,13 +257,13 @@ begin
     FillShape(shape, tempTex, bounds);
   end;
 
- { for i := 0 to ln - 1 do
+  for i := 0 to ln - 1 do
   begin
     segment := shape.Segments[i];
     DrawSegment(segment, tempTex, bounds);
-  end;}
+  end;
 
-  tempTex.CopyTo(bounds.x,bounds.y,fTexture);
+  tempTex.CopyTo(bounds.x, bounds.y, fTexture);
   tempTex.Free;
 end;
 

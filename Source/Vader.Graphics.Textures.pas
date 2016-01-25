@@ -52,9 +52,9 @@ end;
 
 procedure TVTexture.SetPixel(x, y: integer; color: TVRGBAColor);
 begin
-  if (x > fWidth) or (x < 0) then
+  if (x > fWidth-1) or (x < 0) then
     Exit;
-  if (y > fHeight) or (y < 0) then
+  if (y > fHeight-1) or (y < 0) then
     Exit;
   fPixels[y * fWidth + x] := color;
 end;
@@ -67,12 +67,14 @@ end;
 procedure TVTexture.CopyTo(x, y: integer; dest: TVTexture);
 var
   x1, y1: Integer;
+  pixel: TVRGBAColor;
 begin
   for x1 := 0 to fWidth-1 do
   begin
     for y1 := 0 to fHeight-1 do
     begin
-       dest.SetPixel(x1 + x, y1 + y, GetPixel(x1,y1));
+       pixel:= GetPixel(x1,y1);
+       if (pixel and $FF000000) > 0 then dest.SetPixel(x1 + x, y1 + y, pixel);
     end;
   end;
 end;

@@ -40,6 +40,16 @@ type
     property EndPos: TVPoint read fEndPos write fEndPos;
   end;
 
+  { TVSegmentCircle }
+
+  TVSegmentCircle = class(TVSegment)
+    private
+      fRadius: Integer;
+    public
+      constructor Create(x, y, R: integer);
+      property Radius: Integer read fRadius;
+  end;
+
   TVSegmentsArray = array of TVSegment;
 
   { TVShape }
@@ -47,7 +57,10 @@ type
   TVShape = class
   private
     fSegments: TVSegmentsArray;
-    fPos: TVPoint;
+    // Start position of line
+    fCursorPos: TVPoint;
+    // Position of shape
+    fOrigin: TVPoint;
     fMinBound: TVPoint;
     fMaxBound: TVPoint;
     procedure AddSegment(segment: TVSegment);
@@ -58,12 +71,13 @@ type
     procedure BeizerToIntern;
     procedure CloseIntern;
   public
-    constructor Create;
+    constructor Create(originX, originY: integer);
     destructor Destroy; override;
     property MinBound: TVPoint read fMinBound;
     property MaxBound: TVPoint read fMaxBound;
     property Segments: TVSegmentsArray read fSegments;
     function GetBounds: TVRect;
+    function GetOrigin: TVPoint;
   end;
 
 type
@@ -75,9 +89,9 @@ type
     constructor Create(x0, y0, x1, y1: integer);
   end;
 
-  { TVPolyLine2DShape }
+  { TVPolygone2DShape }
 
-  TVPolyLine2DShape = class(TVShape)
+  TVPolygone2DShape = class(TVShape)
   public
     procedure MoveTo(x, y: integer);
     procedure LineTo(x, y: integer);
@@ -88,6 +102,16 @@ type
   TVRectangleShape = class(TVShape)
   public
     constructor Create(x, y, Width, Height: integer);
+  end;
+
+  { TVCircleShape }
+
+  TVCircleShape = class(TVShape)
+    private
+      fRadius: Integer;
+    public
+      constructor Create(x, y, R: integer);
+      property Radius: Integer read fRadius;
   end;
 
 implementation
@@ -144,10 +168,23 @@ begin
 
 end;
 
+{ TVSegmentCircle }
+
+constructor TVSegmentCircle.Create(x, y, R: integer);
+begin
+  fMinBound.x:=x-R;
+  fMinBound.y:=y-R;
+  fMaxBound.x:=x+R+2;
+  fMaxBound.y:=y+R+2;
+  fRadius:=R;
+end;
+
 { TVShape }
 
-constructor TVShape.Create;
+constructor TVShape.Create(originX, originY: integer);
 begin
+  fOrigin.x:=originX;
+  fOrigin.y:=originY;
   SetLength(fSegments, 0);
 end;
 
@@ -170,6 +207,11 @@ begin
   Result.y := fMinBound.y;
   Result.Width := fMaxBound.x - fMinBound.x + 1;
   Result.Height := fMaxBound.y - fMinBound.y + 1;
+end;
+
+function TVShape.GetOrigin: TVPoint;
+begin
+  Result:=fOrigin;
 end;
 
 procedure TVShape.AddSegment(segment: TVSegment);
@@ -203,15 +245,15 @@ end;
 
 procedure TVShape.MoveToIntern(x, y: integer);
 begin
-  fPos.x := x;
-  fPos.y := y;
+  fCursorPos.x := x;
+  fCursorPos.y := y;
 end;
 
 procedure TVShape.LineToIntern(x, y: integer);
 var
   seg: TVSegmentLine2D;
 begin
-  seg := TVSegmentLine2D.Create(fPos.x, fPos.y, x, y);
+  seg := TVSegmentLine2D.Create(fCursorPos.x, fCursorPos.y, x, y);
   AddSegment(seg);
   MoveToIntern(x, y);
 end;
@@ -235,19 +277,19 @@ end;
 
 constructor TVLine2DShape.Create(x0, y0, x1, y1: integer);
 begin
-  inherited Create;
+  inherited Create(x0, y0);
   MoveToIntern(x0, y0);
   LineToIntern(x1, y1);
 end;
 
 { TVPolyLine2DShape }
 
-procedure TVPolyLine2DShape.MoveTo(x, y: integer);
+procedure TVPolygone2DShape.MoveTo(x, y: integer);
 begin
   MoveToIntern(x, y);
 end;
 
-procedure TVPolyLine2DShape.LineTo(x, y: integer);
+procedure TVPolygone2DShape.LineTo(x, y: integer);
 begin
   LineToIntern(x, y);
 end;
@@ -256,11 +298,22 @@ end;
 
 constructor TVRectangleShape.Create(x, y, Width, Height: integer);
 begin
+  inherited Create(x,y);
   MoveToIntern(x, y);
   LineToIntern(x + Width - 1, y);
   LineToIntern(x + Width - 1, y + Height - 1);
   LineToIntern(x, y + Height - 1);
   LineToIntern(x, y);
+end;
+
+{ TVCircleShape }
+
+constructor TVCircleShape.Create(x, y, R: integer);
+var seg: TVSegmentCircle;
+begin
+  inherited Create(x,y);
+  seg:=TVSegmentCircle.Create(x,y,R);
+  AddSegment(seg);
 end;
 
 end.
