@@ -6,6 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
+  Vader.Graphics.Brushes,
   Vader.Graphics.Graphics,
   Vader.Graphics.Shapes,
   Vader.Graphics.Textures,
@@ -71,8 +72,13 @@ var
   c: TColor;
   l: TVRectangleShape;
   b: TVRect;
+  col: TVColor;
+  br: TVSolidBrush;
 begin
-  l := TVRectangleShape.Create(10,10,100,20);
+  col:=TVColor.Create($FFFF0000);
+  fGraphics.Brush := TVSolidBrush.Create(col);
+
+  l := TVRectangleShape.Create(10, 10,100,50);
   fGraphics.DrawShape(l);
   l.Free;
 
@@ -85,6 +91,8 @@ begin
         Canvas.Pixels[x, y] := ToTColor(fTexture.GetPixel(x, y));
     end;
   end;
+
+  col.Free;
 end;
 
 end.

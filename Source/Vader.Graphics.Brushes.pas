@@ -19,6 +19,8 @@ type
     fColor: TVColor;
   public
     constructor Create(color: TVColor);
+    destructor Destroy; override;
+    property Color: TVColor read fColor;
   end;
 
 implementation
@@ -28,6 +30,11 @@ implementation
 constructor TVSolidBrush.Create(color: TVColor);
 begin
   fColor := color;
+end;
+
+destructor TVSolidBrush.Destroy;
+begin
+  inherited Destroy;
 end;
 
 end.

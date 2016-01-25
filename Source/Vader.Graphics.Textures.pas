@@ -46,6 +46,7 @@ end;
 
 destructor TVTexture.Destroy;
 begin
+  fPixels:=nil;
   inherited Destroy;
 end;
 
@@ -67,9 +68,9 @@ procedure TVTexture.CopyTo(x, y: integer; dest: TVTexture);
 var
   x1, y1: Integer;
 begin
-  for x1 := 0 to fWidth - 1 do
+  for x1 := 0 to fWidth-1 do
   begin
-    for y1 := 0 to fHeight - 1 do
+    for y1 := 0 to fHeight-1 do
     begin
        dest.SetPixel(x1 + x, y1 + y, GetPixel(x1,y1));
     end;

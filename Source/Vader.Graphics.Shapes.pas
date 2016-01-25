@@ -107,8 +107,8 @@ function TVSegment.GetBounds: TVRect;
 begin
   Result.x := fMinBound.x;
   Result.y := fMinBound.y;
-  Result.Width := fMaxBound.x - fMinBound.x;
-  Result.Height := fMaxBound.y - fMinBound.y;
+  Result.Width := fMaxBound.x - fMinBound.x + 1;
+  Result.Height := fMaxBound.y - fMinBound.y + 1;
 end;
 
 { TVSegmentLine2D }
@@ -120,20 +120,24 @@ begin
   fEndPos.x := x1;
   fEndPos.y := y1;
 
-  if x0 < x1 then begin
+  if x0 < x1 then
+  begin
     fMinBound.x := x0;
     fMaxBound.x := x1;
   end
-  else begin
+  else
+  begin
     fMinBound.x := x1;
     fMaxBound.x := x0;
   end;
 
-  if y0 < y1 then begin
+  if y0 < y1 then
+  begin
     fMinBound.y := y0;
     fMinBound.y := y1;
   end
-  else begin
+  else
+  begin
     fMinBound.y := y1;
     fMaxBound.y := y0;
   end;
@@ -164,8 +168,8 @@ function TVShape.GetBounds: TVRect;
 begin
   Result.x := fMinBound.x;
   Result.y := fMinBound.y;
-  Result.Width := fMaxBound.x - fMinBound.x;
-  Result.Height := fMaxBound.y - fMinBound.y;
+  Result.Width := fMaxBound.x - fMinBound.x + 1;
+  Result.Height := fMaxBound.y - fMinBound.y + 1;
 end;
 
 procedure TVShape.AddSegment(segment: TVSegment);
@@ -175,11 +179,25 @@ begin
   ln := Length(fSegments);
   SetLength(fSegments, ln + 1);
   fSegments[ln] := segment;
+  if ln = 0 then
+  begin
+    fMinBound.x := segment.MinBound.x;
+    fMaxBound.x := segment.MaxBound.x;
+    fMinBound.y := segment.MinBound.y;
+    fMaxBound.y := segment.MaxBound.y;
+  end
+  else
+  begin
 
-  if segment.MinBound.x < fMinBound.x then fMinBound.x:= segment.MinBound.x;
-  if segment.MaxBound.x > MaxBound.x then fMaxBound.x:= segment.MaxBound.x;
-  if segment.MinBound.y < fMinBound.y then fMinBound.y:= segment.MinBound.y;
-  if segment.MaxBound.y > MaxBound.y then fMaxBound.y:= segment.MaxBound.y;
+    if segment.MinBound.x < fMinBound.x then
+      fMinBound.x := segment.MinBound.x;
+    if segment.MaxBound.x > MaxBound.x then
+      fMaxBound.x := segment.MaxBound.x;
+    if segment.MinBound.y < fMinBound.y then
+      fMinBound.y := segment.MinBound.y;
+    if segment.MaxBound.y > MaxBound.y then
+      fMaxBound.y := segment.MaxBound.y;
+  end;
 
 end;
 
@@ -239,9 +257,9 @@ end;
 constructor TVRectangleShape.Create(x, y, Width, Height: integer);
 begin
   MoveToIntern(x, y);
-  LineToIntern(x + Width, y);
-  LineToIntern(x + Width, y + Height);
-  LineToIntern(x, y + Height);
+  LineToIntern(x + Width - 1, y);
+  LineToIntern(x + Width - 1, y + Height - 1);
+  LineToIntern(x, y + Height - 1);
   LineToIntern(x, y);
 end;
 
