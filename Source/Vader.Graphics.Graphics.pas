@@ -165,10 +165,10 @@ procedure TVGraphics.DrawLineSegment(segment: TVSegmentLine2D;
 var
   x0, y0, x1, y1: integer;
 begin
-  x0 := segment.StartPos.x - bounds.x;
-  y0 := segment.StartPos.y - bounds.y;
-  x1 := segment.EndPos.x - bounds.x;
-  y1 := segment.EndPos.y - bounds.y;
+  x0 := segment.StartPoint.x - bounds.x;
+  y0 := segment.StartPoint.y - bounds.y;
+  x1 := segment.EndPoint.x - bounds.x;
+  y1 := segment.EndPoint.y - bounds.y;
   DrawLineInternal(x0, y0, x1, y1, texture, color);
 end;
 
@@ -263,7 +263,7 @@ begin
     DrawSegment(segment, tempTex, bounds);
   end;
 
-  tempTex.CopyTo(bounds.x, bounds.y, fTexture);
+  tempTex.Blend(bounds.x, bounds.y, fTexture);
   tempTex.Free;
 end;
 

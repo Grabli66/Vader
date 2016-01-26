@@ -28,6 +28,7 @@ type
   public
     constructor Create(color: TVColor);
     constructor Create(color: TVRGBAColor);
+    destructor Destroy; override;
     property Width: integer read fWidth write fWidth;
     property Color: TVColor read fColor write fColor;
   end;
@@ -46,6 +47,12 @@ constructor TVBasicPen.Create(color: TVRGBAColor);
 begin
   fColor := TVColor.Create(color);
   fWidth := DEFAULT_PEN_WIDTH;
+end;
+
+destructor TVBasicPen.Destroy;
+begin
+  fColor.Free;
+  inherited Destroy;
 end;
 
 end.

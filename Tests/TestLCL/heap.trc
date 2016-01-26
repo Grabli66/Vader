@@ -1,0 +1,35 @@
+D:\Workspace\Lazarus\Vader\Tests\TestLCL\TestLCL.exe 
+Heap dump by heaptrc unit
+1117 memory blocks allocated : 1973310/1974272
+1114 memory blocks freed     : 1973262/1974224
+3 unfreed memory blocks : 48
+True heap size : 720896 (160 used in System startup)
+True free heap : 720256
+Should be : 720304
+Call trace for block $0000000001183DA0 size 16
+  $000000010003B4C3 line 91 of main.pas
+  $0000000100138FB6 line 73 of include/customcontrol.inc
+  $000000010002D027 line 1127 of include/customform.inc
+  $00000001001239B5 line 4798 of include/wincontrol.inc
+  $00000001001278C9 line 6740 of include/wincontrol.inc
+  $00000001001390DC line 106 of include/customcontrol.inc
+  $000000010000E175
+  $BAADF00DBAADF00D
+Call trace for block $0000000001183D00 size 16
+  $000000010003B3C4 line 80 of main.pas
+  $0000000100138FB6 line 73 of include/customcontrol.inc
+  $000000010002D027 line 1127 of include/customform.inc
+  $00000001001239B5 line 4798 of include/wincontrol.inc
+  $00000001001278C9 line 6740 of include/wincontrol.inc
+  $00000001001390DC line 106 of include/customcontrol.inc
+  $000000010000E175
+  $BAADF00DBAADF00D
+Call trace for block $0000000001183C60 size 16
+  $000000010003B3AB line 80 of main.pas
+  $0000000100138FB6 line 73 of include/customcontrol.inc
+  $000000010002D027 line 1127 of include/customform.inc
+  $00000001001239B5 line 4798 of include/wincontrol.inc
+  $00000001001278C9 line 6740 of include/wincontrol.inc
+  $00000001001390DC line 106 of include/customcontrol.inc
+  $000000010000E175
+  $BAADF00DBAADF00D

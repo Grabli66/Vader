@@ -46,9 +46,9 @@ begin
     Exit;
   end;
 
-  r := ((col and $FF0000) shr 16) * alpha div 255 + round($FF * (1.0 - (alpha / 255)));
-  g := ((col and $FF00) shr 8) * alpha div 255 + round($FF * (1.0 - (alpha / 255)));
-  b := (col and $FF) * alpha div 255 + round($FF * (1.0 - (alpha / 255)));
+  r := (col and $FF0000) shr 16;
+  g := (col and $FF00) shr 8;
+  b := (col and $FF);
   Result := (b shl 16) + (g shl 8) + r;
 end;
 
@@ -69,34 +69,40 @@ end;
 procedure TForm1.FormPaint(Sender: TObject);
 var
   x, y: integer;
-  c: TColor;
+  pcol: TVRGBAColor;
   l: TVRectangleShape;
   circle: TVCircleShape;
+  path: TVPathShape;
   b: TVRect;
   col: TVColor;
   br: TVSolidBrush;
 begin
-  col:=TVColor.Create($FF00AAAA);
-  fGraphics.Brush := TVSolidBrush.Create(col);
-  circle:= TVCircleShape.Create(40, 20, 20);
-  l := TVRectangleShape.Create(10, 10, 100, 20);
-  fGraphics.DrawShape(l);
-  l.Free;
-  fGraphics.Brush := TVSolidBrush.Create(TVColor.Create($11110000));
+  fGraphics.Brush := TVSolidBrush.Create(TVColor.Create($FF000000));
+  path:= TVPathShape.Create;
+  path.MoveTo(10,10);
+  path.LineTo(20,10);
+  path.LineTo(30,20);
+  path.LineTo(10,30);
+  path.LineTo(30,0);
+  path.LineTo(10,10);
+  fGraphics.DrawShape(path);
+
+  circle := TVCircleShape.Create(20,20,10);
+  fGraphics.Brush := TVSolidBrush.Create(TVColor.Create($1100AA00));
   fGraphics.DrawShape(circle);
   circle.Free;
+  path.Free;
 
   for x := 0 to fTexture.Width - 1 do
   begin
     for y := 0 to fTexture.Height - 1 do
     begin
-      c := ToTColor(fTexture.GetPixel(x, y));
-      if c > 0 then
-        Canvas.Pixels[x, y] := ToTColor(fTexture.GetPixel(x, y));
+      pcol := fTexture.GetPixel(x, y);
+      if pcol > 0 then begin
+        Canvas.Pixels[x, y] := ToTColor(pcol);
+      end;
     end;
   end;
-
-  col.Free;
 end;
 
 end.
