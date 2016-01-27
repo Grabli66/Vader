@@ -2,8 +2,8 @@
 Mobile App Runtime
 
 # TODO:
-1. Draw path
-2. Fix draw circle
-3. Fix color draw
-3. Blend with alpha
-4. Simplify creating brush
+1. Draw AA line with width
+2. Draw quadric curve
+2. Draw cubic curve
+3. Draw arc
+4. Draw ellipse
