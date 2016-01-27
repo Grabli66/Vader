@@ -9,3 +9,5 @@ Mobile App Runtime
 3. Draw circle
 3. Draw arc
 4. Draw ellipse
+5. Width of drawing
+6. Antialiasing
