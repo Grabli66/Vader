@@ -4,15 +4,16 @@ unit Vader.Graphics.Color;
 
 interface
 
-uses
-  Classes, SysUtils;
+uses Vader.System;
+
+const COLOR_BLACK = $FF000000;
 
 type
   TVRGBAColor = 0..$FFFFFFFF;
 
   { TVColor }
 
-  TVColor = class
+  TVColor = class(TVaderObject)
   private
     fColor: TVRGBAColor;
     procedure ParseColor(color: string);
@@ -21,11 +22,11 @@ type
     constructor Create(color: string);
     constructor Create(r, g, b: byte);
     constructor Create(r, g, b, a: byte);
+    property RGBA: TVRGBAColor read fColor write fColor;
     function GetRed: byte;
     function GetGreen: byte;
     function GetBlue: byte;
     function GetAlpha: byte;
-    function GetRGBA: TVRGBAColor;
   end;
 
 implementation
@@ -34,11 +35,13 @@ implementation
 
 constructor TVColor.Create(color: TVRGBAColor);
 begin
+  inherited Create;
   fColor := color;
 end;
 
 constructor TVColor.Create(color: string);
 begin
+  inherited Create;
   ParseColor(color);
 end;
 
@@ -49,12 +52,12 @@ end;
 
 constructor TVColor.Create(r, g, b: byte);
 begin
-
+  inherited Create;
 end;
 
 constructor TVColor.Create(r, g, b, a: byte);
 begin
-
+  inherited Create;
 end;
 
 function TVColor.GetRed: byte;
@@ -75,11 +78,6 @@ end;
 function TVColor.GetAlpha: byte;
 begin
 
-end;
-
-function TVColor.GetRGBA: TVRGBAColor;
-begin
-  Result := fColor;
 end;
 
 end.

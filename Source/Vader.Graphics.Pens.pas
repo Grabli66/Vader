@@ -5,14 +5,14 @@ unit Vader.Graphics.Pens;
 interface
 
 uses
-  Classes, SysUtils,
+  Vader.System,
   Vader.Graphics.Color;
 
 const
   DEFAULT_PEN_WIDTH = 1;
 
 type
-  TVPen = class
+  TVPen = class(TVaderObject)
     private
       fIsAntialiasing: Boolean;
     public
@@ -27,7 +27,7 @@ type
     fWidth: integer;
   public
     constructor Create(color: TVColor);
-    constructor Create(color: TVRGBAColor);
+    constructor Create(color: TVRGBAColor); overload;
     destructor Destroy; override;
     property Width: integer read fWidth write fWidth;
     property Color: TVColor read fColor write fColor;
@@ -39,19 +39,21 @@ implementation
 
 constructor TVBasicPen.Create(color: TVColor);
 begin
-  fColor := TVColor.Create(color.GetRGBA);
+  inherited Create;
+  fColor := TVColor.Create(color.RGBA);
   fWidth := DEFAULT_PEN_WIDTH;
 end;
 
 constructor TVBasicPen.Create(color: TVRGBAColor);
 begin
+  inherited Create;
   fColor := TVColor.Create(color);
   fWidth := DEFAULT_PEN_WIDTH;
 end;
 
 destructor TVBasicPen.Destroy;
 begin
-  fColor.Free;
+  if Assigned(fColor) then fColor.Free;
   inherited Destroy;
 end;
 

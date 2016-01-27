@@ -5,21 +5,21 @@ unit Vader.Graphics.Textures;
 interface
 
 uses
-  Classes, SysUtils,
+  Vader.System,
   Vader.Graphics.Shapes,
   Vader.Graphics.Color;
 
 type
 
   { TVTexture }
-  TVTexture = class
+  TVTexture = class(TVaderObject)
   private
     fWidth: integer;
     fHeight: integer;
     fPixels: array of TVRGBAColor;
     function AlphaBlend(src, dst: TVRGBAColor): TVRGBAColor;
   public
-    constructor Create(Width, Height: integer);
+    constructor Create(Width, Height: integer); overload;
     constructor Create(rect: TVRect); overload;
     destructor Destroy; override;
     property Width: integer read fWidth;
@@ -46,13 +46,13 @@ begin
     Exit;
   end;
 
-  srcR:= (src and $FF0000) shr 16;
-  srcG:= (src and $FF00) shr 8;
-  srcB:= src and $FF;
+  srcR := (src and $FF0000) shr 16;
+  srcG := (src and $FF00) shr 8;
+  srcB := src and $FF;
 
-  dstR:= (dst and $FF0000) shr 16;
-  dstG:= (dst and $FF00) shr 8;
-  dstB:= dst and $FF;
+  dstR := (dst and $FF0000) shr 16;
+  dstG := (dst and $FF00) shr 8;
+  dstB := dst and $FF;
 
   r := srcR * alpha div 255 + round(dstR * (1.0 - (alpha / 255)));
   g := srcG * alpha div 255 + round(dstG * (1.0 - (alpha / 255)));
@@ -63,6 +63,7 @@ end;
 
 constructor TVTexture.Create(Width, Height: integer);
 begin
+  inherited Create;
   fWidth := Width;
   fHeight := Height;
   SetLength(fPixels, Width * Height);
@@ -70,6 +71,7 @@ end;
 
 constructor TVTexture.Create(rect: TVRect); overload;
 begin
+  inherited Create;
   Create(rect.Width, rect.Height);
 end;
 
@@ -104,7 +106,7 @@ begin
     begin
       srcPixel := GetPixel(x1, y1);
       dstPixel := dest.GetPixel(x1 + x, y1 + y);
-      pixel:=AlphaBlend(srcPixel, dstPixel);
+      pixel := AlphaBlend(srcPixel, dstPixel);
       if (pixel and $FF000000) > 0 then
         dest.SetPixel(x1 + x, y1 + y, pixel);
     end;

@@ -5,9 +5,8 @@ unit Vader.Graphics.Graphics;
 interface
 
 uses
-  Classes,
-  SysUtils,
-  Math,
+  Vader.System,
+  Vader.Math,
   Vader.Graphics.Color,
   Vader.Graphics.Textures,
   Vader.Graphics.Shapes,
@@ -19,7 +18,7 @@ type
 
   { TVGraphics }
 
-  TVGraphics = class
+  TVGraphics = class(TVaderObject)
   private
     fTexture: TVTexture;
     fPen: TVBasicPen;
@@ -36,19 +35,23 @@ type
     procedure DrawLineInternal(x0, y0, x1, y1: integer; texture: TVTexture;
       color: TVRGBAColor);
     // Draws anti-aliased line with width
-    procedure DrawAALineWithWidthInternal(x0, y0, x1, y1: integer; Width: Float; texture: TVTexture; color: TVRGBAColor);
+    procedure DrawAALineWithWidthInternal(x0, y0, x1, y1: integer;
+      Width: double; texture: TVTexture; color: TVRGBAColor);
     procedure DrawCircleInternal(x, y, R: integer; texture: TVTexture;
       color: TVRGBAColor);
     procedure FillShape(shape: TVShape; texture: TVTexture; bounds: TVRect);
+
+    procedure SetBrush(Value: TVBrush);
   public
     constructor Create(texture: TVTexture);
     destructor Destroy; override;
-    property Pen: TVBasicPen read fPen write fPen;
-    property Brush: TVBrush read fBrush write fBrush;
-    property Font: TVFont read fFont write fFont;
+    property Pen: TVBasicPen read fPen;
+    property Brush: TVBrush read fBrush write SetBrush;
+    property Font: TVFont read fFont;
     procedure DrawShape(shape: TVShape);
     procedure DrawString(x, y: integer; Text: WideString);
     procedure DrawImage(x, y: integer; image: TVTexture);
+
   end;
 
 implementation
@@ -66,19 +69,26 @@ end;
 
 constructor TVGraphics.Create(texture: TVTexture);
 begin
+  inherited Create;
   fPen := TVBasicPen.Create($FFFF0000);
+  fBrush:= TVSolidBrush.Create($FF000000);
   fTexture := texture;
 end;
 
 destructor TVGraphics.Destroy;
 begin
-  if Assigned(fBrush) then
-    fBrush.Free;
   if Assigned(fPen) then
-    fPen.Free;
+    FreeAndNil(fPen);
+  if Assigned(fBrush) then
+    FreeAndNil(fBrush);
   if Assigned(fFont) then
-    fFont.Free;
+    FreeAndNil(fFont);
   inherited Destroy;
+end;
+
+procedure TVGraphics.SetBrush(Value: TVBrush);
+begin
+  fBrush.Assign(Value);
 end;
 
 procedure TVGraphics.DrawLineInternal(x0, y0, x1, y1: integer;
@@ -119,11 +129,13 @@ begin
 end;
 
 // Draws anti-aliased line with width
-procedure TVGraphics.DrawAALineWithWidthInternal(x0, y0, x1, y1: integer; Width: Float; texture: TVTexture; color: TVRGBAColor);
-var dx,dy, sx, sy, err, e2, x2, y2: Integer;
-    ed: float;
+procedure TVGraphics.DrawAALineWithWidthInternal(x0, y0, x1, y1: integer;
+  Width: double; texture: TVTexture; color: TVRGBAColor);
+var
+  dx, dy, sx, sy, err, e2, x2, y2: integer;
+  ed: double;
 begin
-  dx:= abs(x1-x0);
+  {dx:= abs(x1-x0);
   sx:= -1;
   if x0 < x1 then sx:= 1;
   dy:= abs(y1-y0);
@@ -150,7 +162,7 @@ begin
          if (y0 == y1) break;
          err += dx; y0 += sy;
       end;
-   end;
+   end;    }
 end;
 
 procedure TVGraphics.DrawCircleInternal(x, y, R: integer; texture: TVTexture;
@@ -192,11 +204,11 @@ procedure TVGraphics.DrawSegment(segment: TVSegment; texture: TVTexture; bounds:
 begin
   if segment is TVSegmentLine2D then
   begin
-    DrawLineSegment(TVSegmentLine2D(segment), texture, bounds, fPen.Color.GetRGBA);
+    DrawLineSegment(TVSegmentLine2D(segment), texture, bounds, fPen.Color.RGBA);
   end
   else if segment is TVSegmentCircle then
   begin
-    DrawCircleSegment(TVSegmentCircle(segment), texture, bounds, fPen.Color.GetRGBA);
+    DrawCircleSegment(TVSegmentCircle(segment), texture, bounds, fPen.Color.RGBA);
   end;
 end;
 
@@ -246,7 +258,7 @@ var
   color: TVRGBAColor;
 begin
   if fBrush is TVSolidBrush then
-    color := (TVSolidBrush(fBrush)).Color.GetRGBA;
+    color := (TVSolidBrush(fBrush)).Color.RGBA;
 
   ContourShape(shape, texture, bounds, color);
 

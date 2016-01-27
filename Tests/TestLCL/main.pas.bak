@@ -6,6 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
+  Vader.System,
+  Vader.Xml,
   Vader.Graphics.Brushes,
   Vader.Graphics.Graphics,
   Vader.Graphics.Shapes,
@@ -55,6 +57,7 @@ end;
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
+var shit: IUnknown;
 begin
   fTexture := TVTexture.Create(200, 200);
   fGraphics := TVGraphics.Create(fTexture);
@@ -62,8 +65,8 @@ end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
-  fTexture.Free;
-  fGraphics.Free;
+  FreeAndNil(fTexture);
+  FreeAndNil(fGraphics);
 end;
 
 procedure TForm1.FormPaint(Sender: TObject);
@@ -77,7 +80,8 @@ var
   col: TVColor;
   br: TVSolidBrush;
 begin
-  fGraphics.Brush := TVSolidBrush.Create(TVColor.Create($FF000000));
+  br:= TVSolidBrush.Create($FF000000);
+
   path:= TVPathShape.Create;
   path.MoveTo(10,10);
   path.LineTo(20,10);
@@ -88,10 +92,14 @@ begin
   fGraphics.DrawShape(path);
 
   circle := TVCircleShape.Create(20,20,10);
-  fGraphics.Brush := TVSolidBrush.Create(TVColor.Create($5500AA00));
+  FreeAndNil(br);
+  br:= TVSolidBrush.Create(TVColor.Create($1100AA00));
+
+  fGraphics.Brush := br;
   fGraphics.DrawShape(circle);
-  circle.Free;
-  path.Free;
+  FreeAndNil(circle);
+  FreeAndNil(path);
+  FreeAndNil(br);
 
   for x := 0 to fTexture.Width - 1 do
   begin

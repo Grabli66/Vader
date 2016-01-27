@@ -4,8 +4,7 @@ unit Vader.Graphics.Font;
 
 interface
 
-uses
-  Classes, SysUtils;
+uses Vader.System;
 
 type TVFont = class
 end;

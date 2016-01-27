@@ -5,11 +5,12 @@ unit Vader.Graphics.Brushes;
 interface
 
 uses
-  Classes, SysUtils,
+  Vader.System,
   Vader.Graphics.Color;
 
 type
-  TVBrush = class
+  TVBrush = class(TVaderObject)
+  public
   end;
 
   { TVSolidBrush }
@@ -18,23 +19,50 @@ type
   private
     fColor: TVColor;
   public
-    constructor Create(color: TVColor);
+    constructor Create; overload;
+    constructor Create(color: TVColor); overload;
+    constructor Create(color: TVRGBAColor); overload;
     destructor Destroy; override;
     property Color: TVColor read fColor;
+    procedure Assign(src: TVaderObject); override;
   end;
 
 implementation
 
 { TVSolidBrush }
 
+constructor TVSolidBrush.Create;
+begin
+  inherited Create;
+  fColor := TVColor.Create(COLOR_BLACK);
+end;
+
 constructor TVSolidBrush.Create(color: TVColor);
 begin
-  fColor := color;
+  Create;
+  fColor.RGBA := color.RGBA;
+end;
+
+constructor TVSolidBrush.Create(color: TVRGBAColor);
+begin
+  Create;
+  fColor.RGBA := color;
 end;
 
 destructor TVSolidBrush.Destroy;
 begin
+  if Assigned(fColor) then
+    fColor.Free;
   inherited Destroy;
+end;
+
+procedure TVSolidBrush.Assign(src: TVaderObject);
+begin
+  if src is TVSolidBrush then
+  begin
+    Color.RGBA:=(src as TVSolidBrush).Color.RGBA;
+  end;
+  inherited Assign(src);
 end;
 
 end.

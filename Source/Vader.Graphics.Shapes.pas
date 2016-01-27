@@ -4,8 +4,7 @@ unit Vader.Graphics.Shapes;
 
 interface
 
-uses
-  Classes, SysUtils, Math;
+uses Vader.System;
 
 type
   TVPoint = packed record
@@ -18,7 +17,7 @@ type
 
   { TVSegment }
 
-  TVSegment = class
+  TVSegment = class(TVaderObject)
   protected
     fMinBound: TVPoint;
     fMaxBound: TVPoint;
@@ -54,7 +53,7 @@ type
 
   { TVShape }
 
-  TVShape = class
+  TVShape = class(TVaderObject)
   private
     fSegments: TVSegmentsArray;
     // Start position of line
@@ -141,6 +140,8 @@ end;
 
 constructor TVSegmentLine2D.Create(x0, y0, x1, y1: integer);
 begin
+  inherited Create;
+
   fStartPoint.x := x0;
   fStartPoint.y := y0;
   fEndPoint.x := x1;
@@ -174,6 +175,7 @@ end;
 
 constructor TVSegmentCircle.Create(x, y, R: integer);
 begin
+  inherited Create;
   fMinBound.x := x - R;
   fMinBound.y := y - R;
   fMaxBound.x := x + R + 2;
@@ -185,21 +187,20 @@ end;
 
 constructor TVShape.Create(originX, originY: integer);
 begin
+  inherited Create;
   fOrigin.x := originX;
   fOrigin.y := originY;
   SetLength(fSegments, 0);
 end;
 
 destructor TVShape.Destroy;
-var
-  i: integer;
+var i: Integer;
 begin
-  for i := Low(fSegments) to High(fSegments) do
-  begin
+  for i:=Low(fSegments) to High(fSegments) do begin
     fSegments[i].Free;
   end;
 
-  fSegments := nil;
+  fSegments:=nil;
   inherited Destroy;
 end;
 
@@ -254,6 +255,7 @@ procedure TVShape.LineToIntern(x, y: integer);
 var
   seg: TVSegmentLine2D;
 begin
+  inherited Create;
   seg := TVSegmentLine2D.Create(fCursorPos.x, fCursorPos.y, x, y);
   AddSegment(seg);
   MoveToIntern(x, y);
