@@ -8,10 +8,9 @@
       <Unit0>
         <Filename Value="TestLCL.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos Y="26"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -20,19 +19,20 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="76"/>
-        <CursorPos X="31" Y="91"/>
-        <UsageCount Value="75"/>
+        <TopLine Value="73"/>
+        <CursorPos X="47" Y="90"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="247"/>
-        <CursorPos X="16" Y="266"/>
-        <UsageCount Value="75"/>
+        <TopLine Value="112"/>
+        <CursorPos Y="131"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -41,7 +41,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="255"/>
         <CursorPos Y="223"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -49,7 +49,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="5"/>
         <CursorPos X="34" Y="47"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -58,7 +58,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="6"/>
         <CursorPos X="11" Y="19"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -67,7 +67,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="32"/>
         <CursorPos X="28" Y="91"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -75,7 +75,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos X="20" Y="10"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -83,7 +83,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <CursorPos X="14" Y="11"/>
-        <UsageCount Value="74"/>
+        <UsageCount Value="76"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -124,123 +124,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="49" Column="50" TopLine="25"/>
+        <Caret Line="107" TopLine="84"/>
       </Position1>
       <Position2>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="48" Column="57" TopLine="33"/>
+        <Caret Line="42" TopLine="27"/>
       </Position2>
       <Position3>
-        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
-        <Caret Line="224" TopLine="200"/>
+        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
+        <Caret Line="43" TopLine="27"/>
       </Position3>
       <Position4>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="59" Column="65" TopLine="43"/>
+        <Caret Line="45" TopLine="27"/>
       </Position4>
       <Position5>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="57" Column="66" TopLine="42"/>
+        <Caret Line="46" TopLine="27"/>
       </Position5>
       <Position6>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="105" TopLine="84"/>
+        <Caret Line="62" TopLine="48"/>
       </Position6>
       <Position7>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="106" TopLine="84"/>
+        <Caret Line="108" TopLine="84"/>
       </Position7>
       <Position8>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="107" TopLine="84"/>
+        <Caret Line="103" TopLine="84"/>
       </Position8>
       <Position9>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="42" TopLine="27"/>
+        <Caret Line="105" TopLine="84"/>
       </Position9>
       <Position10>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="43" TopLine="27"/>
+        <Caret Line="106" TopLine="84"/>
       </Position10>
       <Position11>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="45" TopLine="27"/>
+        <Caret Line="49" TopLine="36"/>
       </Position11>
       <Position12>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="46" TopLine="27"/>
+        <Caret Line="50" TopLine="36"/>
       </Position12>
       <Position13>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="62" TopLine="48"/>
+        <Caret Line="51" TopLine="36"/>
       </Position13>
       <Position14>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="108" TopLine="84"/>
+        <Caret Line="53" TopLine="36"/>
       </Position14>
       <Position15>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="103" TopLine="84"/>
+        <Caret Line="54" TopLine="36"/>
       </Position15>
       <Position16>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="105" TopLine="84"/>
+        <Caret Line="55" TopLine="36"/>
       </Position16>
       <Position17>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="106" TopLine="84"/>
+        <Caret Line="57" TopLine="36"/>
       </Position17>
       <Position18>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="49" TopLine="36"/>
+        <Caret Line="58" TopLine="36"/>
       </Position18>
       <Position19>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="50" TopLine="36"/>
+        <Caret Line="59" TopLine="36"/>
       </Position19>
       <Position20>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="51" TopLine="36"/>
+        <Caret Line="61" TopLine="36"/>
       </Position20>
       <Position21>
-        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="53" TopLine="36"/>
-      </Position21>
-      <Position22>
-        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="54" TopLine="36"/>
-      </Position22>
-      <Position23>
-        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="55" TopLine="36"/>
-      </Position23>
-      <Position24>
-        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="57" TopLine="36"/>
-      </Position24>
-      <Position25>
-        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="58" TopLine="36"/>
-      </Position25>
-      <Position26>
-        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="59" TopLine="36"/>
-      </Position26>
-      <Position27>
-        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
-        <Caret Line="61" TopLine="36"/>
-      </Position27>
-      <Position28>
         <Filename Value="TestLCL.lpr"/>
         <Caret Line="9" Column="12"/>
-      </Position28>
-      <Position29>
+      </Position21>
+      <Position22>
         <Filename Value="..\..\Source\Vader.Graphics.Pens.pas"/>
         <Caret Line="31" Column="21" TopLine="11"/>
-      </Position29>
-      <Position30>
+      </Position22>
+      <Position23>
         <Filename Value="..\..\Source\Vader.Graphics.Pens.pas"/>
         <Caret Line="45" Column="49" TopLine="23"/>
+      </Position23>
+      <Position24>
+        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
+        <Caret Line="266" Column="16" TopLine="231"/>
+      </Position24>
+      <Position25>
+        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
+        <Caret Line="38" Column="28" TopLine="22"/>
+      </Position25>
+      <Position26>
+        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
+        <Caret Line="123" Column="28" TopLine="112"/>
+      </Position26>
+      <Position27>
+        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
+        <Caret Line="126" Column="3" TopLine="109"/>
+      </Position27>
+      <Position28>
+        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
+        <Caret Line="125" Column="6" TopLine="109"/>
+      </Position28>
+      <Position29>
+        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
+        <Caret Line="126" Column="6" TopLine="109"/>
+      </Position29>
+      <Position30>
+        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
+        <Caret Line="127" Column="26" TopLine="110"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

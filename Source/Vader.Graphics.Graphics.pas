@@ -32,8 +32,11 @@ type
       bounds: TVRect; color: TVRGBAColor);
     procedure DrawCircleSegment(segment: TVSegmentCircle; texture: TVTexture;
       bounds: TVRect; color: TVRGBAColor);
+    // Draws aliased line with width 1 pixel
     procedure DrawLineInternal(x0, y0, x1, y1: integer; texture: TVTexture;
       color: TVRGBAColor);
+    // Draws anti-aliased line with width
+    procedure DrawAALineWithWidthInternal(x0, y0, x1, y1: integer; Width: Float; texture: TVTexture; color: TVRGBAColor);
     procedure DrawCircleInternal(x, y, R: integer; texture: TVTexture;
       color: TVRGBAColor);
     procedure FillShape(shape: TVShape; texture: TVTexture; bounds: TVRect);
@@ -115,6 +118,41 @@ begin
   end;
 end;
 
+// Draws anti-aliased line with width
+procedure TVGraphics.DrawAALineWithWidthInternal(x0, y0, x1, y1: integer; Width: Float; texture: TVTexture; color: TVRGBAColor);
+var dx,dy, sx, sy, err, e2, x2, y2: Integer;
+    ed: float;
+begin
+  dx:= abs(x1-x0);
+  sx:= -1;
+  if x0 < x1 then sx:= 1;
+  dy:= abs(y1-y0);
+  sy:= -1;
+  if y0 < y1 then sy:= 1;
+  err:= dx-dy;      // error value e_xy
+  if (dx+dy) = 0 then ed:= 1 else ed:= sqrt(dx*dx+dy*dy);
+
+  Width:= (Width+1)/2;
+  while true do begin         // pixel loop
+      //setPixelColor(x0, y0, max(0,255*(abs(err-dx+dy)/ed-wd+1)));
+      texture.SetPixel(x0, y0, color);
+      e2:= err;
+      x2:= x0;
+      if (2*e2 >= -dx) then begin       // x step
+         for (e2 += dy, y2 = y0; e2 < ed*wd && (y1 != y2 || dx > dy); e2 += dx)
+            setPixelColor(x0, y2 += sy, max(0,255*(abs(e2)/ed-wd+1)));
+         if (x0 == x1) then break;
+         e2 = err; err -= dy; x0 += sx;
+      end;
+      if (2*e2 <= dy) then begin       // y step
+         for (e2 = dx-e2; e2 < ed*wd && (x1 != x2 || dx < dy); e2 += dy)
+            setPixelColor(x2 += sx, y0, max(0,255*(abs(e2)/ed-wd+1)));
+         if (y0 == y1) break;
+         err += dx; y0 += sy;
+      end;
+   end;
+end;
+
 procedure TVGraphics.DrawCircleInternal(x, y, R: integer; texture: TVTexture;
   color: TVRGBAColor);
 var
@@ -155,7 +193,9 @@ begin
   if segment is TVSegmentLine2D then
   begin
     DrawLineSegment(TVSegmentLine2D(segment), texture, bounds, fPen.Color.GetRGBA);
-  end else if segment is TVSegmentCircle then begin
+  end
+  else if segment is TVSegmentCircle then
+  begin
     DrawCircleSegment(TVSegmentCircle(segment), texture, bounds, fPen.Color.GetRGBA);
   end;
 end;
@@ -174,7 +214,8 @@ end;
 
 procedure TVGraphics.DrawCircleSegment(segment: TVSegmentCircle;
   texture: TVTexture; bounds: TVRect; color: TVRGBAColor);
-var x0, y0: integer;
+var
+  x0, y0: integer;
 begin
   x0 := segment.Radius + 1;
   y0 := segment.Radius + 1;
