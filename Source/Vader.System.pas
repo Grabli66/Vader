@@ -8,10 +8,10 @@ type
 
   { TVaderObject }
 
-  TVaderObject = class
+  TVaderObject = class(TInterfacedObject)
     public
+      // Assings values from one object to another
       procedure Assign(src: TVaderObject); virtual;
-      function ToString: WideString; virtual;
   end;
 
 procedure FreeAndNil(var Obj);
@@ -29,14 +29,9 @@ end;
 
 { TVaderObject }
 
+// Assings values from one object to another
 procedure TVaderObject.Assign(src: TVaderObject);
 begin
-
-end;
-
-function TVaderObject.ToString: WideString;
-begin
-  Result:='TVaderObject';
 end;
 
 end.

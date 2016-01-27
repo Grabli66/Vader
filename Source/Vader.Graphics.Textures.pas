@@ -10,9 +10,15 @@ uses
   Vader.Graphics.Color;
 
 type
+  // Interface for surfaces with direct access for pixels
+  IPixelSurface = interface
+    procedure SetPixel(x, y: integer; color: TVRGBAColor);
+    function GetPixel(x, y: integer): TVRGBAColor;
+  end;
+
 
   { TVTexture }
-  TVTexture = class(TVaderObject)
+  TVTexture = class(TVaderObject, IPixelSurface)
   private
     fWidth: integer;
     fHeight: integer;

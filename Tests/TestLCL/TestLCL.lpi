@@ -33,7 +33,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="16">
+    <Units Count="17">
       <Unit0>
         <Filename Value="TestLCL.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -88,7 +88,6 @@
       <Unit12>
         <Filename Value="..\..\Source\Xml\XmlDocument.inc"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Unit1"/>
       </Unit12>
       <Unit13>
         <Filename Value="..\..\Source\Xml\XmlNode.inc"/>
@@ -102,6 +101,10 @@
         <Filename Value="..\..\Source\Vader.System.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit15>
+      <Unit16>
+        <Filename Value="..\..\Source\Vader.Graphics.Plot.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit16>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
