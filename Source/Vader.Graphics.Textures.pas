@@ -12,10 +12,13 @@ uses
 type
   // Interface for surfaces with direct access for pixels
   IPixelSurface = interface
+    ['{F325E03F-F96C-4B48-950B-A3542AD692DE}']
+    procedure FillColor(color: TVRGBAColor);
     procedure SetPixel(x, y: integer; color: TVRGBAColor);
     function GetPixel(x, y: integer): TVRGBAColor;
+    function GetWidth: Integer;
+    function GetHeight: Integer;
   end;
-
 
   { TVTexture }
   TVTexture = class(TVaderObject, IPixelSurface)
@@ -28,8 +31,9 @@ type
     constructor Create(Width, Height: integer); overload;
     constructor Create(rect: TVRect); overload;
     destructor Destroy; override;
-    property Width: integer read fWidth;
-    property Height: integer read fHeight;
+    procedure FillColor(color: TVRGBAColor);
+    function GetWidth: Integer;
+    function GetHeight: Integer;
     procedure SetPixel(x, y: integer; color: TVRGBAColor);
     function GetPixel(x, y: integer): TVRGBAColor;
     procedure Blend(x, y: integer; dest: TVTexture);
@@ -85,6 +89,29 @@ destructor TVTexture.Destroy;
 begin
   fPixels := nil;
   inherited Destroy;
+end;
+
+procedure TVTexture.FillColor(color: TVRGBAColor);
+var
+  x, y: Integer;
+begin
+ for x := 0 to fWidth - 1 do
+  begin
+    for y := 0 to fHeight - 1 do
+    begin
+      fPixels[y * fWidth + x] := color;
+    end;
+  end;
+end;
+
+function TVTexture.GetWidth: Integer;
+begin
+  Result:= fWidth;
+end;
+
+function TVTexture.GetHeight: Integer;
+begin
+  Result:= fHeight;
 end;
 
 procedure TVTexture.SetPixel(x, y: integer; color: TVRGBAColor);

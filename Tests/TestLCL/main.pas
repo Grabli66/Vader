@@ -8,6 +8,7 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
   Vader.System,
   Vader.Xml,
+  Vader.Graphics.Plot,
   Vader.Graphics.Brushes,
   Vader.Graphics.Graphics,
   Vader.Graphics.Shapes,
@@ -23,7 +24,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormPaint(Sender: TObject);
   private
-    fTexture: TVTexture;
+    fTexture: IPixelSurface;
     fGraphics: TVGraphics;
     function ToTColor(col: TVRGBAColor): TColor;
   public
@@ -57,16 +58,15 @@ end;
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
-var shit: IUnknown;
 begin
   fTexture := TVTexture.Create(200, 200);
-  fGraphics := TVGraphics.Create(fTexture);
+//  fGraphics := TVGraphics.Create(fTexture);
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
-  FreeAndNil(fTexture);
-  FreeAndNil(fGraphics);
+//  FreeAndNil(fTexture);
+//  FreeAndNil(fGraphics);
 end;
 
 procedure TForm1.FormPaint(Sender: TObject);
@@ -79,8 +79,11 @@ var
   b: TVRect;
   col: TVColor;
   br: TVSolidBrush;
+  plot: TVPlotter;
+  lps: TVLinePlotSettings;
+  cps: TVCirclePlotSettings;
 begin
-  br:= TVSolidBrush.Create($FF000000);
+  {br:= TVSolidBrush.Create($FF000000);
 
   path:= TVPathShape.Create;
   path.MoveTo(10,10);
@@ -99,11 +102,29 @@ begin
   fGraphics.DrawShape(circle);
   FreeAndNil(circle);
   FreeAndNil(path);
-  FreeAndNil(br);
+  FreeAndNil(br);}
 
-  for x := 0 to fTexture.Width - 1 do
+  lps.Color:=$FF000000;
+  lps.x0:=10;
+  lps.y0:=10;
+  lps.x1:=100;
+  lps.y1:=100;
+
+  cps.Color:= $FF000000;
+  cps.x:=20;
+  cps.y:=20;
+  cps.Radius:=20;
+
+  fTexture.FillColor($FFFFFFFF);
+
+  plot:= TVPlotter.Create;
+  //plot.PlotLine(fTexture, lps);
+  plot.PlotCircle(fTexture, cps);
+  FreeAndNil(plot);
+
+  for x := 0 to fTexture.GetWidth - 1 do
   begin
-    for y := 0 to fTexture.Height - 1 do
+    for y := 0 to fTexture.GetHeight - 1 do
     begin
       pcol := fTexture.GetPixel(x, y);
       if pcol > 0 then begin

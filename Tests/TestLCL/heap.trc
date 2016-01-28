@@ -1,7 +1,7 @@
 D:\Workspace\Lazarus\Vader\Tests\TestLCL\TestLCL.exe 
 Heap dump by heaptrc unit
-808 memory blocks allocated : 1806646/1807608
-808 memory blocks freed     : 1806646/1807608
+920 memory blocks allocated : 1873494/1874448
+920 memory blocks freed     : 1873494/1874448
 0 unfreed memory blocks : 0
 True heap size : 688128 (160 used in System startup)
 True free heap : 687968

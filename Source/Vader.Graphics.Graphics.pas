@@ -264,9 +264,9 @@ begin
 
   start := False;
   work := False;
-  for y := 0 to texture.Height - 1 do
+  for y := 0 to texture.GetHeight - 1 do
   begin
-    for x := 0 to texture.Width - 1 do
+    for x := 0 to texture.GetWidth - 1 do
     begin
       pixel := texture.GetPixel(x, y);
       if ((pixel and $FF000000) > 0) and not work then
