@@ -7,13 +7,9 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
   Vader.System,
-  Vader.Xml,
-  Vader.Graphics.Plot,
-  Vader.Graphics.Brushes,
-  Vader.Graphics.Graphics,
-  Vader.Graphics.Shapes,
+  Vader.Geom,
   Vader.Graphics.Textures,
-  Vader.Graphics.Color;
+  Vader.Graphics.Graphics;
 
 type
 
@@ -25,8 +21,8 @@ type
     procedure FormPaint(Sender: TObject);
   private
     fTexture: IPixelSurface;
-    fGraphics: TVGraphics;
-    function ToTColor(col: TVRGBAColor): TColor;
+//    fGraphics: TVGraphics;
+//    function ToTColor(col: TVRGBAColor): TColor;
   public
     { public declarations }
   end;
@@ -38,7 +34,7 @@ implementation
 
 {$R *.lfm}
 
-function TForm1.ToTColor(col: TVRGBAColor): TColor;
+{function TForm1.ToTColor(col: TVRGBAColor): TColor;
 var
   r, g, b, alpha: byte;
 begin
@@ -53,13 +49,14 @@ begin
   g := (col and $FF00) shr 8;
   b := (col and $FF);
   Result := (b shl 16) + (g shl 8) + r;
-end;
+end;}
 
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  fTexture := TVTexture.Create(200, 200);
+
+//  fTexture := TVTexture.Create(200, 200);
 //  fGraphics := TVGraphics.Create(fTexture);
 end;
 
@@ -70,7 +67,7 @@ begin
 end;
 
 procedure TForm1.FormPaint(Sender: TObject);
-var
+{var
   x, y: integer;
   pcol: TVRGBAColor;
   l: TVRectangleShape;
@@ -82,8 +79,10 @@ var
   plot: TVPlotter;
   lps: TVLinePlotSettings;
   cps: TVCirclePlotSettings;
+  pps: TVPolyPlotSettings;
+  sfs: TVSurfaceFillSettings;}
 begin
-  {br:= TVSolidBrush.Create($FF000000);
+{  br:= TVSolidBrush.Create($FF000000);
 
   path:= TVPathShape.Create;
   path.MoveTo(10,10);
@@ -103,7 +102,7 @@ begin
   FreeAndNil(circle);
   FreeAndNil(path);
   FreeAndNil(br);}
-
+     {
   lps.Color:=$FF000000;
   lps.x0:=10;
   lps.y0:=10;
@@ -111,15 +110,32 @@ begin
   lps.y1:=100;
 
   cps.Color:= $FF000000;
-  cps.x:=20;
+  cps.x:=40;
   cps.y:=20;
   cps.Radius:=20;
 
-  fTexture.FillColor($FFFFFFFF);
+  sfs.Color:=$FF000000;
+
+//  fTexture.FillColor($);
+
+  pps.Color:=$FF000000;
+  SetLength(pps.Points, 5);
+  pps.Points[0].x:= 10;
+  pps.Points[0].y:= 10;
+  pps.Points[1].x:= 30;
+  pps.Points[1].y:= 10;
+  pps.Points[2].x:= 30;
+  pps.Points[2].y:= 30;
+  pps.Points[3].x:= 10;
+  pps.Points[3].y:= 30;
+  pps.Points[4].x:= 10;
+  pps.Points[4].y:= 10;
 
   plot:= TVPlotter.Create;
   //plot.PlotLine(fTexture, lps);
   plot.PlotCircle(fTexture, cps);
+  plot.SolidFillSurface(fTexture, sfs);
+  plot.PlotPoly(fTexture, pps);
   FreeAndNil(plot);
 
   for x := 0 to fTexture.GetWidth - 1 do
@@ -131,7 +147,7 @@ begin
         Canvas.Pixels[x, y] := ToTColor(pcol);
       end;
     end;
-  end;
+  end; }
 end;
 
 end.

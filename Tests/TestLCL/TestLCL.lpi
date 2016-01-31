@@ -33,7 +33,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="17">
+    <Units Count="15">
       <Unit0>
         <Filename Value="TestLCL.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -46,65 +46,58 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
+        <Filename Value="..\..\Source\Vader.Math.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="..\..\Source\Vader.Graphics.Shapes.pas"/>
+        <Filename Value="..\..\Source\Vader.System.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="..\..\Source\Vader.Graphics.Pens.pas"/>
+        <Filename Value="..\..\Source\Vader.Geom.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="..\..\Source\Vader.Graphics.Brushes.pas"/>
+        <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
+        <Filename Value="..\..\Source\Vader.Graphics.Shapes.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="..\..\Source\Vader.Graphics.Font.pas"/>
+        <Filename Value="..\..\Source\Vader.Graphics.Pens.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="Vadr.Graphics.Pens"/>
       </Unit7>
       <Unit8>
-        <Filename Value="..\..\Source\Vader.Graphics.Color.pas"/>
+        <Filename Value="..\..\Source\Vader.Graphics.Brushes.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="..\..\Source\Vader.Math.pas"/>
+        <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit9>
       <Unit10>
-        <Filename Value="..\..\Source\Vader.Xml.pas"/>
+        <Filename Value="..\..\Source\Vader.Graphics.Font.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit10>
       <Unit11>
-        <Filename Value="..\..\Source\Vader.Xml.XmlDocument.pas"/>
+        <Filename Value="..\..\Source\Vader.Graphics.Color.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="..\..\Source\Xml\XmlDocument.inc"/>
+        <Filename Value="..\..\Source\Vader.Xml.XmlDocument.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
       <Unit13>
-        <Filename Value="..\..\Source\Xml\XmlNode.inc"/>
+        <Filename Value="..\..\Source\Vader.Xml.XmlNode.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit13>
       <Unit14>
-        <Filename Value="..\..\Source\Vader.Xml.XmlNode.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit14>
-      <Unit15>
-        <Filename Value="..\..\Source\Vader.System.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit15>
-      <Unit16>
         <Filename Value="..\..\Source\Vader.Graphics.Plot.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit16>
+      </Unit14>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

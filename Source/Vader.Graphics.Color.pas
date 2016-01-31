@@ -27,6 +27,7 @@ type
     function GetGreen: byte;
     function GetBlue: byte;
     function GetAlpha: byte;
+    procedure Assign(src: TVaderObject); override;
   end;
 
 implementation
@@ -78,6 +79,17 @@ end;
 function TVColor.GetAlpha: byte;
 begin
 
+end;
+
+procedure TVColor.Assign(src: TVaderObject);
+var color: TVColor;
+begin
+  if src is TVColor then
+  begin
+    color:= src as TVColor;
+    fColor:= color.RGBA;
+  end;
+  inherited Assign(src);
 end;
 
 end.

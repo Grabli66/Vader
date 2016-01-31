@@ -7,6 +7,7 @@ interface
 uses
   Vader.System,
   Vader.Math,
+  Vader.Geom,
   Vader.Graphics.Color,
   Vader.Graphics.Textures;
 
@@ -15,31 +16,26 @@ type
   TVLinePlotSettings = packed record
     x0, y0: integer;                    // Start position
     x1, y1: integer;                    // End position
-    IsAntialiased: boolean;            // Draw with antialiasing
     Width: integer;                     // Width of line
     Color: TVRGBAColor;
-  end;
-
-  TVCubicCurvePlotSettings = packed record
-
-  end;
-
-  TVQuadricCurveSettings = packed record
-
+    IsAntialiased: boolean;            // Draw with antialiasing
   end;
 
   TVCirclePlotSettings = packed record
     x, y: integer;
     Radius: integer;
     Color: TVRGBAColor;
+    IsAntialiased: boolean;            // Draw with antialiasing
   end;
 
-  TVEllipsePlotSettings = packed record
-
+  TVPolyPlotSettings = packed record
+    Points: array of TVPoint;
+    Color: TVRGBAColor;
+    IsAntialiased: boolean;            // Draw with antialiasing
   end;
 
-  TVRectanglePlotSettings = packed record
-
+  TVSurfaceFillSettings = packed record
+    Color: TVRGBAColor;
   end;
 
   { TVPlotter }
@@ -53,18 +49,12 @@ type
     // Draws circle on surface
     procedure PlotCircle(texture: IPixelSurface;
       circlePlotSettings: TVCirclePlotSettings);
-    // Draws rectangle on surface
-    procedure PlotRectangle(texture: IPixelSurface;
-      rectanglePlotSettings: TVRectanglePlotSettings);
+    // Draws poly on surface
+    procedure PlotPoly(texture: IPixelSurface;
+      polyPlotSettings: TVPolyPlotSettings);
     // Fills surface
-//    procedure FillRectangle(texture: IPixelSurface; );
-
-    procedure PlotCubicCurve(texture: IPixelSurface;
-      cubicCurvePlotSettings: TVCubicCurvePlotSettings);
-    procedure PlotQuadricCurve(texture: IPixelSurface;
-      quadricCurvePlotSettings: TVQuadricCurveSettings);
-    procedure PlotEllipse(texture: IPixelSurface;
-      ellipsePlotSettings: TVEllipsePlotSettings);
+    procedure SolidFillSurface(texture: IPixelSurface;
+      surfaceFillSettings: TVSurfaceFillSettings);
   end;
 
 implementation
@@ -128,18 +118,6 @@ begin
   end;
 end;
 
-procedure TVPlotter.PlotCubicCurve(texture: IPixelSurface;
-  cubicCurvePlotSettings: TVCubicCurvePlotSettings);
-begin
-
-end;
-
-procedure TVPlotter.PlotQuadricCurve(texture: IPixelSurface;
-  quadricCurvePlotSettings: TVQuadricCurveSettings);
-begin
-
-end;
-
 procedure TVPlotter.PlotCircle(texture: IPixelSurface;
   circlePlotSettings: TVCirclePlotSettings);
 var
@@ -154,10 +132,14 @@ begin
   err := 2 - 2 * r; (* bottom left to top right *)
   repeat
     begin
-      texture.SetPixel(xm - x, ym + y, circlePlotSettings.Color);  (*   I. Quadrant +x +y *)
-      texture.SetPixel(xm - y, ym - x, circlePlotSettings.Color);  (*  II. Quadrant -x +y *)
-      texture.SetPixel(xm + x, ym - y, circlePlotSettings.Color);  (* III. Quadrant -x -y *)
-      texture.SetPixel(xm + y, ym + x, circlePlotSettings.Color);  (*  IV. Quadrant +x -y *)
+      texture.SetPixel(xm - x, ym + y, circlePlotSettings.Color);
+      (*   I. Quadrant +x +y *)
+      texture.SetPixel(xm - y, ym - x, circlePlotSettings.Color);
+      (*  II. Quadrant -x +y *)
+      texture.SetPixel(xm + x, ym - y, circlePlotSettings.Color);
+      (* III. Quadrant -x -y *)
+      texture.SetPixel(xm + y, ym + x, circlePlotSettings.Color);
+      (*  IV. Quadrant +x -y *)
       r := err;
       if r <= y then
       begin
@@ -173,16 +155,72 @@ begin
   until not (x < 0);
 end;
 
-procedure TVPlotter.PlotEllipse(texture: IPixelSurface;
-  ellipsePlotSettings: TVEllipsePlotSettings);
+procedure TVPlotter.PlotPoly(texture: IPixelSurface;
+  polyPlotSettings: TVPolyPlotSettings);
+var
+  pointCount, steps, i: integer;
+  lineSettings: TVLinePlotSettings;
+  point1, point2: TVPoint;
 begin
-
+  pointCount := Length(polyPlotSettings.Points);
+  if pointCount < 2 then
+    Exit;
+  lineSettings.Color := polyPlotSettings.Color;
+  lineSettings.IsAntialiased := polyPlotSettings.IsAntialiased;
+  steps := Ceil(pointCount / 2);
+  for i := 0 to steps do
+  begin
+    point1 := polyPlotSettings.Points[i];
+    point2 := polyPlotSettings.Points[i + 1];
+    lineSettings.x0 := point1.x;
+    lineSettings.y0 := point1.y;
+    lineSettings.x1 := point2.x;
+    lineSettings.y1 := point2.y;
+    PlotLine(texture, lineSettings);
+  end;
 end;
 
-procedure TVPlotter.PlotRectangle(texture: IPixelSurface;
-  rectanglePlotSettings: TVRectanglePlotSettings);
+procedure TVPlotter.SolidFillSurface(texture: IPixelSurface;
+  surfaceFillSettings: TVSurfaceFillSettings);
+var
+  start, work: Boolean;
+  y, x, sx, sy: Integer;
+  pixel: TVRGBAColor;
+  lineSettings: TVLinePlotSettings;
 begin
+  start := False;
+  work := False;
+  lineSettings.Color:= surfaceFillSettings.Color;
+  for y := 0 to texture.GetHeight - 1 do
+  begin
+    for x := 0 to texture.GetWidth - 1 do
+    begin
+      pixel := texture.GetPixel(x, y);
+      if ((pixel and $FF000000) > 0) and not work then
+      begin
+        start := True;
+        sx := x;
+        sy := y;
+        texture.SetPixel(sx, sy, surfaceFillSettings.Color);
+        Continue;
+      end;
 
+      if start and ((pixel and $FF000000) = 0) then
+      begin
+        work := True;
+      end
+      else if work then
+      begin
+        start := False;
+        work := False;
+        lineSettings.x0:= sx;
+        lineSettings.y0:= sy;
+        lineSettings.x1:= x;
+        lineSettings.y1:= y;
+        PlotLine(texture, lineSettings);
+      end;
+    end;
+  end;
 end;
 
 end.

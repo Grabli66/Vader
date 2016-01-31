@@ -1,9 +1,11 @@
 unit Vader.Xml.XmlNode;
 
-{$mode objfpc}{$H+}
-{$I ./Xml/XmlNode.inc}
-
 interface
+
+uses Vader.System;
+
+type TVXmlNode = class(TVaderObject)
+end;
 
 implementation
 

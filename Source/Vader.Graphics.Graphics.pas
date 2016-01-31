@@ -7,12 +7,13 @@ interface
 uses
   Vader.System,
   Vader.Math,
-  Vader.Graphics.Color,
+  Vader.Geom,
   Vader.Graphics.Textures,
-  Vader.Graphics.Shapes,
-  Vader.Graphics.Brushes,
+  Vader.Graphics.Color,
   Vader.Graphics.Pens,
-  Vader.Graphics.Font;
+  Vader.Graphics.Brushes,
+  Vader.Graphics.Font,
+  Vader.Graphics.Shapes;
 
 type
 
@@ -21,7 +22,7 @@ type
   TVGraphics = class(TVaderObject)
   private
     fTexture: TVTexture;
-    fPen: TVBasicPen;
+    fPen: TVPen;
     fBrush: TVBrush;
     fFont: TVFont;
     procedure ContourShape(shape: TVShape; texture: TVTexture;
@@ -45,7 +46,7 @@ type
   public
     constructor Create(texture: TVTexture);
     destructor Destroy; override;
-    property Pen: TVBasicPen read fPen;
+    property Pen: TVPen read fPen;
     property Brush: TVBrush read fBrush write SetBrush;
     property Font: TVFont read fFont;
     procedure DrawShape(shape: TVShape);
@@ -70,7 +71,7 @@ end;
 constructor TVGraphics.Create(texture: TVTexture);
 begin
   inherited Create;
-  fPen := TVBasicPen.Create($FFFF0000);
+  fPen := TVPen.Create($FFFF0000);
   fBrush:= TVSolidBrush.Create($FF000000);
   fTexture := texture;
 end;

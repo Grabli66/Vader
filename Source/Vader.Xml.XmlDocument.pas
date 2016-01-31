@@ -1,11 +1,15 @@
 unit Vader.Xml.XmlDocument;
 
-{$mode objfpc}{$H+}
-{$I ./Xml/XmlDocument.inc}
-
 interface
+
+uses Vader.Xml.XmlNode;
+
+type
+  TVXmlDocument = class(TVXmlNode)
+  private
+  public
+  end;
 
 implementation
 
 end.
-

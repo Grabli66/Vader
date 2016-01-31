@@ -1,12 +1,10 @@
 unit Vader.Graphics.Textures;
 
-{$mode objfpc}{$H+}
-
 interface
 
 uses
   Vader.System,
-  Vader.Graphics.Shapes,
+  Vader.Geom,
   Vader.Graphics.Color;
 
 type

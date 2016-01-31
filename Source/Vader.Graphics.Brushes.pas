@@ -1,7 +1,5 @@
 unit Vader.Graphics.Brushes;
 
-{$mode objfpc}{$H+}
-
 interface
 
 uses
@@ -60,7 +58,7 @@ procedure TVSolidBrush.Assign(src: TVaderObject);
 begin
   if src is TVSolidBrush then
   begin
-    Color.RGBA:=(src as TVSolidBrush).Color.RGBA;
+    fColor.Assign((src as TVSolidBrush).Color);
   end;
   inherited Assign(src);
 end;

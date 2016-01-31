@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   sysutils,
   Interfaces, // this includes the LCL widgetset
-  Forms, main, Vader.Graphics.Plot;
+  Forms, main;
 
 {$R *.res}
 
