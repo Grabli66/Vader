@@ -1,0 +1,7 @@
+D:\Workspace\Lazarus\Vader\Tests\TestNative\TestNative.exe 
+Heap dump by heaptrc unit
+51 memory blocks allocated : 1864/2040
+51 memory blocks freed     : 1864/2040
+0 unfreed memory blocks : 0
+True heap size : 98304 (192 used in System startup)
+True free heap : 98112

@@ -4,7 +4,6 @@ unit Vader.Math;
 
 interface
 
-// Sign functions
 type
   TValueSign = -1..1;
 

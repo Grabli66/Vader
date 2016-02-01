@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\3.0.0\bin\x86_64-win64\fpc.exe" Date="1200031521"/>
+  <Params Value=" -MObjFPC -Scgi -O1 -g -gl -gh -Xs -l -vewnhibq -FiD:\Workspace\Lazarus\Vader\Tests\TestNative\lib\x86_64-win64 -FuD:\Workspace\Lazarus\Vader\Source -FuD:\Workspace\Lazarus\Vader\Source\Windows -FuD:\Workspace\Lazarus\Vader\Tests\TestNative\ -FUD:\Workspace\Lazarus\Vader\Tests\TestNative\lib\x86_64-win64\ TestNative.lpr"/>
+</CONFIG>

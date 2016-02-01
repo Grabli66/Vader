@@ -7,6 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs,
   Vader.System,
+  Vader.Window,
   Vader.Geom,
   Vader.Graphics.Textures,
   Vader.Graphics.Graphics;
@@ -55,7 +56,6 @@ end;}
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-
 //  fTexture := TVTexture.Create(200, 200);
 //  fGraphics := TVGraphics.Create(fTexture);
 end;
