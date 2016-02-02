@@ -7,13 +7,14 @@ interface
 uses
   Windows,
   Vader.System,
+  Vader.Controls.Control,
   Vader.Controls.IWindow;
 
 type
 
   { TVPlatformWindow }
 
-  TVPlatformWindow = class(TVaderObject, IWindow)
+  TVPlatformWindow = class(TVControl, IWindow)
   private
     fWndClass: TWndClassExW;
     fWndINST: HINST;
@@ -42,7 +43,7 @@ constructor TVPlatformWindow.Create;
 var
   wndCpnSize, wndBrdSizeX, wndBrdSizeY: longint;
 begin
-  inherited Create;
+  inherited Create(nil);
   fWndClassName:= 'Vader';
   fWndCaptionW:= 'Vader App';
   wndCpnSize := GetSystemMetrics(SM_CYCAPTION);

@@ -8,9 +8,8 @@
       <Unit0>
         <Filename Value="TestNative.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <CursorPos X="24" Y="5"/>
-        <UsageCount Value="28"/>
+        <CursorPos X="19" Y="17"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -20,30 +19,33 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\..\Source\Vader.Controls.Control.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="15"/>
+        <CursorPos X="18" Y="45"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\..\Source\Vader.Controls.IWindow.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="26" Y="8"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="45" Y="13"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="..\..\Source\Vader.Controls.Window.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="17" Y="12"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="17" Y="15"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="..\..\Source\Vader.Geom.pas"/>
@@ -52,7 +54,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit5>
       <Unit6>
         <Filename Value="..\..\Source\Vader.Graphics.Brushes.pas"/>
@@ -61,7 +63,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit6>
       <Unit7>
         <Filename Value="..\..\Source\Vader.Graphics.Color.pas"/>
@@ -70,7 +72,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit7>
       <Unit8>
         <Filename Value="..\..\Source\Vader.Graphics.Font.pas"/>
@@ -79,7 +81,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit8>
       <Unit9>
         <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
@@ -88,7 +90,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit9>
       <Unit10>
         <Filename Value="..\..\Source\Vader.Graphics.Pens.pas"/>
@@ -97,7 +99,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit10>
       <Unit11>
         <Filename Value="..\..\Source\Vader.Graphics.Plot.pas"/>
@@ -106,7 +108,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit11>
       <Unit12>
         <Filename Value="..\..\Source\Vader.Graphics.Shapes.pas"/>
@@ -115,7 +117,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit12>
       <Unit13>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
@@ -124,7 +126,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit13>
       <Unit14>
         <Filename Value="..\..\Source\Vader.Math.pas"/>
@@ -133,14 +135,14 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit14>
       <Unit15>
         <Filename Value="..\..\Source\Vader.Opengl.Context.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="20" Y="25"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="24" Y="24"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
       </Unit15>
       <Unit16>
         <Filename Value="..\..\Source\Vader.System.pas"/>
@@ -149,13 +151,13 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit16>
       <Unit17>
         <Filename Value="..\..\Source\Vader.Xml.XmlDocument.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit17>
       <Unit18>
         <Filename Value="..\..\Source\Vader.Xml.XmlNode.pas"/>
@@ -164,60 +166,62 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit18>
       <Unit19>
         <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="29" Y="8"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit19>
       <Unit20>
         <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="23"/>
-        <CursorPos X="31" Y="32"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="26"/>
+        <CursorPos X="25" Y="46"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
       </Unit20>
       <Unit21>
         <Filename Value="..\..\Source\Vader.Application.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="12"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
       </Unit21>
       <Unit22>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="10" Y="32"/>
+        <UsageCount Value="30"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="47" Y="24"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
+      </Unit23>
+      <Unit24>
         <Filename Value="..\..\Source\Vader.Controls.Application.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
         <UsageCount Value="19"/>
-      </Unit22>
-      <Unit23>
-        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="10" Y="32"/>
-        <UsageCount Value="28"/>
-      </Unit23>
-      <Unit24>
-        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="23" Y="54"/>
-        <UsageCount Value="28"/>
       </Unit24>
       <Unit25>
-        <Filename Value="..\..\..\..\..\..\..\usr\share\fpcsrc\3.0.0\packages\opengl\src\glu.pp"/>
+        <Filename Value="D:\usr\share\fpcsrc\3.0.0\packages\opengl\src\glu.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <UsageCount Value="10"/>
       </Unit25>
       <Unit26>
-        <Filename Value="..\..\..\..\..\..\..\usr\share\fpcsrc\3.0.0\packages\opengl\src\gl.pp"/>
+        <Filename Value="D:\usr\share\fpcsrc\3.0.0\packages\opengl\src\gl.pp"/>
         <UnitName Value="GL"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1257"/>
@@ -225,14 +229,14 @@
         <UsageCount Value="10"/>
       </Unit26>
       <Unit27>
-        <Filename Value="..\..\..\..\..\..\..\usr\share\fpcsrc\3.0.0\packages\opengles\src\gles20.pas"/>
+        <Filename Value="D:\usr\share\fpcsrc\3.0.0\packages\opengles\src\gles20.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos Y="18"/>
         <UsageCount Value="10"/>
       </Unit27>
     </Units>
-    <JumpHistory Count="9" HistoryIndex="8">
+    <JumpHistory Count="17" HistoryIndex="16">
       <Position1>
         <Filename Value="TestNative.lpr"/>
         <Caret Line="6" Column="13"/>
@@ -269,6 +273,38 @@
         <Filename Value="TestNative.lpr"/>
         <Caret Line="18" Column="23"/>
       </Position9>
+      <Position10>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="24" Column="47"/>
+      </Position10>
+      <Position11>
+        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
+        <Caret Line="28" Column="47"/>
+      </Position11>
+      <Position12>
+        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
+        <Caret Line="89" Column="5" TopLine="55"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
+        <Caret Line="16" Column="37"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\..\Source\Vader.Controls.Control.pas"/>
+        <Caret Line="20" Column="28"/>
+      </Position14>
+      <Position15>
+        <Filename Value="..\..\Source\Vader.Controls.Control.pas"/>
+        <Caret Line="21" Column="16" TopLine="2"/>
+      </Position15>
+      <Position16>
+        <Filename Value="..\..\Source\Vader.Controls.Control.pas"/>
+        <Caret Line="31" Column="47" TopLine="9"/>
+      </Position16>
+      <Position17>
+        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
+        <Caret Line="10" Column="25"/>
+      </Position17>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

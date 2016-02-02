@@ -22,7 +22,6 @@ type
     procedure SetCaption(Caption: WideString);
     procedure SetPosition(x, y: integer);
     procedure SetSize(Width, Height: integer);
-    function Gl : TVOpenglContext;
   end;
 
 implementation
