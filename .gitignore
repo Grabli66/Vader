@@ -1,2 +1,15 @@
+lib
+*.lnk
+*.mdb
+*.tmp
 *.bak
+*.swp
 *.exe
+*.dll
+*.so
+*.ppu
+*.dcu
+*.zip
+*.7z
+*.ico
+*.dbg
