@@ -7,6 +7,7 @@ interface
 uses
   Windows,
   Vader.System,
+  Vader.Graphics.Textures,
   Vader.Controls.Control,
   Vader.Controls.IWindow;
 
@@ -25,8 +26,8 @@ type
   public
     constructor Create;
     procedure SetCaption(Caption: WideString);
-    procedure SetPosition(x, y: integer);
-    procedure SetSize(Width, Height: integer);
+    procedure DrawTexture(x, y: integer; texture: IPixelSurface);
+    procedure OnDraw; override;
   end;
 
 implementation
@@ -34,7 +35,7 @@ implementation
 function WindowProcessMessage(hWnd: HWND; Msg: UINT; wParam: WPARAM;
   lParam: LPARAM): LRESULT; stdcall;
 begin
-
+  Result := DefWindowProcW(hWnd, Msg, wParam, lParam);
 end;
 
 { TVPlatformWindow }
@@ -44,8 +45,13 @@ var
   wndCpnSize, wndBrdSizeX, wndBrdSizeY: longint;
 begin
   inherited Create(nil);
-  fWndClassName:= 'Vader';
-  fWndCaptionW:= 'Vader App';
+  fBox.x:= 100;
+  fBox.y:= 100;
+  fBox.Width:= 800;
+  fBox.Height:= 600;
+
+  fWndClassName := 'Vader';
+  fWndCaptionW := 'Vader App';
   wndCpnSize := GetSystemMetrics(SM_CYCAPTION);
   wndBrdSizeX := GetSystemMetrics(SM_CXDLGFRAME);
   wndBrdSizeY := GetSystemMetrics(SM_CYDLGFRAME);
@@ -53,7 +59,7 @@ begin
   with fWndClass do
   begin
     cbSize := SizeOf(TWndClassExW);
-    style := CS_DBLCLKS or CS_OWNDC;
+    style := CS_DBLCLKS or CS_HREDRAW or CS_OWNDC or CS_VREDRAW;
     lpfnWndProc := @WindowProcessMessage;
     cbClsExtra := 0;
     cbWndExtra := 0;
@@ -66,10 +72,22 @@ begin
     lpszClassName := fWndClassName;
   end;
 
-  fWndStyle := WS_CAPTION or WS_MINIMIZEBOX or WS_SYSMENU or WS_VISIBLE;
-  fWndHandle := CreateWindowExW( WS_EX_TOOLWINDOW, fWndClassName, fWndCaptionW, WS_POPUP, 0, 0, 0, 0, 0, 0, 0, nil );
+  if RegisterClassExW(fWndClass) = 0 then
+  begin
+    exit;
+  end;
 
-  BringWindowToTop( fWndHandle );
+  fWndHandle := CreateWindowExW(WS_EX_APPWINDOW or WS_EX_CONTROLPARENT or
+    WS_EX_WINDOWEDGE, fWndClassName, fWndCaptionW, WS_CAPTION or
+    WS_CLIPCHILDREN or WS_MAXIMIZEBOX or WS_MINIMIZEBOX or
+    WS_OVERLAPPED or WS_SIZEBOX or WS_SYSMENU or
+    WS_VISIBLE, fBox.x, fBox.y, fBox.Width, fBox.Height, 0, 0, HInstance, nil);
+
+  ShowWindow(fWndHandle, CmdShow);
+  ShowWindow(fWndHandle, SW_SHOW);
+  UpdateWindow(fWndHandle);
+
+  BringWindowToTop(fWndHandle);
 end;
 
 procedure TVPlatformWindow.SetCaption(Caption: WideString);
@@ -77,14 +95,14 @@ begin
 
 end;
 
-procedure TVPlatformWindow.SetPosition(x, y: integer);
+procedure TVPlatformWindow.DrawTexture(x, y: integer; texture: IPixelSurface);
 begin
 
 end;
 
-procedure TVPlatformWindow.SetSize(Width, Height: integer);
+procedure TVPlatformWindow.OnDraw;
 begin
-
+  inherited OnDraw;
 end;
 
 end.

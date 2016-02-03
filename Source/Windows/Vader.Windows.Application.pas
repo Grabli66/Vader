@@ -4,7 +4,8 @@ unit Vader.Windows.Application;
 
 interface
 
-uses Vader.System,
+uses Windows,
+     Vader.System,
      Vader.Controls.Window;
 
 type
@@ -12,6 +13,8 @@ type
 { TVPlatformApplication }
 
  TVPlatformApplication = class(TVaderObject)
+  private
+    fCurrentWindow: TVWindow;
   public
     constructor Create;
     procedure SetWindow(window: TVWindow);
@@ -29,12 +32,18 @@ end;
 
 procedure TVPlatformApplication.SetWindow(window: TVWindow);
 begin
-
+  fCurrentWindow:= window;
 end;
 
 procedure TVPlatformApplication.Run;
+var AMessage: Msg;
 begin
-
+  if fCurrentWindow = nil then Exit;
+  while GetMessage(@AMessage, 0, 0, 0) do begin
+    TranslateMessage(AMessage);
+    DispatchMessage(AMessage);
+  end;
+  Halt(AMessage.wParam);
 end;
 
 end.

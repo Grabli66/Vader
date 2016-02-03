@@ -1,20 +1,37 @@
 program TestNative;
 
-uses sysutils,
+uses
+  SysUtils,
   Vader.Application,
   Vader.Controls.Window;
 
-var app: TVApplication;
-    window: TVWindow;
+type
+
+  { TMyWindow }
+
+  TMyWindow = class(TVWindow)
+  public
+    procedure OnDraw; override;
+  end;
+
+var
+  app: TVApplication;
+  window: TMyWindow;
+
+{ TMyWindow }
+
+procedure TMyWindow.OnDraw;
+begin
+
+end;
 
 begin
   if FileExists('heap.trc') then
     DeleteFile('heap.trc');
   SetHeapTraceOutput('heap.trc');
 
-  app:= TVApplication.Create;
-  window:= TVWindow.Create;
+  app := TVApplication.Create;
+  window := TMyWindow.Create;
   app.SetWindow(window);
   app.Run;
 end.
-

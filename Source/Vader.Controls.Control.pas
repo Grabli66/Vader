@@ -31,8 +31,7 @@ type
    procedure SetSize(width, height: Integer); virtual;
    // Adds child to control
    procedure AddChild(child: TVControl);
-   // Redraws control
-   procedure Redraw;
+   procedure OnDraw; virtual;
 end;
 
 implementation
@@ -67,9 +66,8 @@ begin
 
 end;
 
-procedure TVControl.Redraw;
+procedure TVControl.OnDraw;
 begin
-  fWindow.Redraw;
 end;
 
 end.
