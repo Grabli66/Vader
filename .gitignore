@@ -11,5 +11,5 @@ lib
 *.dcu
 *.zip
 *.7z
-*.ico
 *.dbg
+*.trc
