@@ -2,7 +2,7 @@ program TestNative;
 
 uses
   SysUtils,
-  Vader.Application,
+  Vader.Application.Application,
   Vader.Controls.Window;
 
 type
@@ -22,7 +22,6 @@ var
 
 procedure TMyWindow.OnDraw;
 begin
-
 end;
 
 begin

@@ -17,7 +17,7 @@ type
 
   TVPlatformWindow = class(TVControl, IWindow)
   private
-    fCaption: WideString;
+    fCaption: PChar;
     { Pointer to display }
     fScrDisplay: PDisplay;
     { Pointer to screen }
@@ -44,8 +44,10 @@ type
     procedure SwapBuffers;
   public
     constructor Create;
+    destructor Destroy; override;
     procedure SetCaption(Caption: WideString);
-    procedure DrawTexture(x,y: integer; texture: IPixelSurface);
+    procedure DrawTexture(x, y: integer; texture: IPixelSurface);
+    procedure ProcessMessages;
   end;
 
 implementation
@@ -55,7 +57,21 @@ implementation
 constructor TVPlatformWindow.Create;
 begin
   inherited Create(nil);
-  fCaption:= 'Vader';
+  fBox.x := 100;
+  fBox.y := 100;
+  fBox.Width := 800;
+  fBox.Height := 600;
+  fCaption := 'Vader';
+  Start;
+end;
+
+destructor TVPlatformWindow.Destroy;
+begin
+  DestroyGLContext;
+  DestroyWindow;
+
+  XFreeColormap(fScrDisplay, fScrColorMap);
+  inherited Destroy;
 end;
 
 // Connects to X Server
@@ -89,9 +105,10 @@ end;
 
 { Creates opengl context }
 procedure TVPlatformWindow.CreateGLContext;
-var attribs : array[0..4] of Integer;
-    nitems : Integer;
-    config : PGLXFBConfig;
+var
+  attribs: array[0..4] of integer;
+  nitems: integer;
+  config: PGLXFBConfig;
 begin
   config := glXChooseFBConfig(fScrDisplay, fScrDefault, nil, nitems);
 
@@ -105,18 +122,15 @@ begin
 
   if not Assigned(fOglContext) then
   begin
-    // пробуем Indirect Render
     fOglContext := glXCreateContext(fScrDisplay, fVisualInfo, nil, False);
     if not Assigned(fOglContext) then
     begin
-      // Ошибка
       exit;
     end;
   end;
 
   if not glXMakeCurrent(fScrDisplay, fWndHandle, fOglContext) then
   begin
-    // Ошибка
     exit;
   end;
 end;
@@ -127,7 +141,7 @@ var
   wndValueMask: integer;
   rootWnd: TWindow;
 begin
-  // Получает идентификатор root-окна
+  // get root window
   rootWnd := RootWindow(fScrDisplay, fVisualInfo^.screen);
   fScrColorMap := XCreateColormap(fScrDisplay, rootWnd, fVisualInfo^.visual,
     AllocNone);
@@ -137,11 +151,8 @@ begin
   wndValueMask := CWColormap or CWEventMask or CWX or CWY;
 
   fWndHandle := XCreateWindow(fScrDisplay, rootWnd, fBox.x, fBox.y,
-    fBox.Width, fBox.Height,
-    0, // Border width
-    fVisualInfo^.depth, InputOutput,
-    fVisualInfo^.visual, wndValueMask, @fWndAttr);
-
+    fBox.Width, fBox.Height, 0, // Border width
+    fVisualInfo^.depth, InputOutput, fVisualInfo^.visual, wndValueMask, @fWndAttr);
 
   if fWndHandle = 0 then
   begin
@@ -155,7 +166,8 @@ end;
 { Free opengl context }
 procedure TVPlatformWindow.DestroyGLContext;
 begin
-  if not glXMakeCurrent(fScrDisplay, None, nil) then; // Ошибка
+  if not glXMakeCurrent(fScrDisplay, None, nil) then
+    Exit;
 
   glXDestroyContext(fScrDisplay, fOglContext);
   glXWaitGL;
@@ -175,11 +187,7 @@ end;
 
 procedure TVPlatformWindow.Start;
 var
-  running: boolean;
-  event: TXEvent;
   wnd_Title: TXTextProperty;
-  wmDeleteMessage: TAtom;
-  delta: Double;
 begin
   // Создает окно и OpenGL контекст
   ConnectXServer;
@@ -190,14 +198,28 @@ begin
   // Устанавливает название окна
   XStringListToTextProperty(@fCaption, 1, @wnd_Title);
   XSetWMName(fScrDisplay, fWndHandle, @wnd_Title);
+end;
 
+procedure TVPlatformWindow.SetCaption(Caption: WideString);
+begin
+
+end;
+
+procedure TVPlatformWindow.DrawTexture(x, y: integer; texture: IPixelSurface);
+begin
+end;
+
+procedure TVPlatformWindow.ProcessMessages;
+var
+  running: boolean;
+  wmDeleteMessage: TAtom;
+var
+  event: TXEvent;
+begin
   // Подписывается на событие удаления окна
   wmDeleteMessage := XInternAtom(fScrDisplay, 'WM_DELETE_WINDOW', False);
   XSetWMProtocols(fScrDisplay, fWndHandle, @wmDeleteMessage, 1);
-
-  running := True;
-
-  // Обрабатывает события
+  running:= true;
   while running do
   begin
     while XPending(fScrDisplay) <> 0 do
@@ -209,21 +231,9 @@ begin
           running := False;
         break;
       end;
+      OnDraw;
     end;
   end;
-  DestroyGLContext;
-  DestroyWindow;
-
-  XFreeColormap(fScrDisplay, fScrColorMap);
-end;
-
-procedure TVPlatformWindow.SetCaption(Caption: WideString);
-begin
-
-end;
-
-procedure TVPlatformWindow.DrawTexture(x, y: integer; texture: IPixelSurface);
-begin
 end;
 
 end.

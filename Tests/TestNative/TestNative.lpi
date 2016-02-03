@@ -31,7 +31,7 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <Units Count="23">
+    <Units Count="24">
       <Unit0>
         <Filename Value="TestNative.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -105,25 +105,29 @@
         <IsPartOfProject Value="True"/>
       </Unit17>
       <Unit18>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
+        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit18>
       <Unit19>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit19>
       <Unit20>
-        <Filename Value="..\..\Source\Vader.Application.pas"/>
+        <Filename Value="..\..\Source\Vader.Application.PlatformApplication.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit20>
       <Unit21>
-        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.pas"/>
+        <Filename Value="..\..\Source\Vader.Application.Application.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit21>
       <Unit22>
-        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.PlatformApplication.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit22>
+      <Unit23>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.PlatformApplication.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit23>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -142,6 +146,11 @@
         <UseAnsiStrings Value="False"/>
       </SyntaxOptions>
     </Parsing>
+    <CodeGeneration>
+      <Optimizations>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
+    </CodeGeneration>
     <Linking>
       <Debugging>
         <UseHeaptrc Value="True"/>

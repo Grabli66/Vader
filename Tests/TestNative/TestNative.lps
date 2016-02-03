@@ -4,12 +4,12 @@
     <PathDelim Value="\"/>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="30">
+    <Units Count="36">
       <Unit0>
         <Filename Value="TestNative.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="2" Y="25"/>
-        <UsageCount Value="48"/>
+        <CursorPos X="24" Y="12"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,31 +19,31 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\..\Source\Vader.Controls.Control.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="36"/>
-        <CursorPos X="6" Y="70"/>
-        <UsageCount Value="48"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="13"/>
+        <CursorPos X="11" Y="18"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\..\Source\Vader.Controls.IWindow.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="63" Y="13"/>
-        <UsageCount Value="48"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="29" Y="14"/>
+        <UsageCount Value="55"/>
       </Unit3>
       <Unit4>
         <Filename Value="..\..\Source\Vader.Controls.Window.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="1"/>
         <CursorPos X="6" Y="15"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
+        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="..\..\Source\Vader.Geom.pas"/>
@@ -52,7 +52,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit5>
       <Unit6>
         <Filename Value="..\..\Source\Vader.Graphics.Brushes.pas"/>
@@ -61,7 +61,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit6>
       <Unit7>
         <Filename Value="..\..\Source\Vader.Graphics.Color.pas"/>
@@ -70,7 +70,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit7>
       <Unit8>
         <Filename Value="..\..\Source\Vader.Graphics.Font.pas"/>
@@ -79,7 +79,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit8>
       <Unit9>
         <Filename Value="..\..\Source\Vader.Graphics.Graphics.pas"/>
@@ -88,7 +88,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit9>
       <Unit10>
         <Filename Value="..\..\Source\Vader.Graphics.Pens.pas"/>
@@ -97,7 +97,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit10>
       <Unit11>
         <Filename Value="..\..\Source\Vader.Graphics.Plot.pas"/>
@@ -106,7 +106,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit11>
       <Unit12>
         <Filename Value="..\..\Source\Vader.Graphics.Shapes.pas"/>
@@ -115,14 +115,14 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit12>
       <Unit13>
         <Filename Value="..\..\Source\Vader.Graphics.Textures.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16" Y="12"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit13>
       <Unit14>
         <Filename Value="..\..\Source\Vader.Math.pas"/>
@@ -131,7 +131,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit14>
       <Unit15>
         <Filename Value="..\..\Source\Vader.System.pas"/>
@@ -140,13 +140,13 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit15>
       <Unit16>
         <Filename Value="..\..\Source\Vader.Xml.XmlDocument.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit16>
       <Unit17>
         <Filename Value="..\..\Source\Vader.Xml.XmlNode.pas"/>
@@ -155,55 +155,50 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="55"/>
       </Unit17>
       <Unit18>
         <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="12"/>
-        <CursorPos X="75" Y="30"/>
+        <UnitName Value="Vader.Windows.Application.PlatformApplicationImpl"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="22" Y="15"/>
         <UsageCount Value="48"/>
-        <Loaded Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="70"/>
-        <CursorPos X="17" Y="83"/>
-        <UsageCount Value="48"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="14" Y="72"/>
+        <UsageCount Value="55"/>
       </Unit19>
       <Unit20>
         <Filename Value="..\..\Source\Vader.Application.pas"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="12"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="47"/>
       </Unit20>
       <Unit21>
         <Filename Value="..\..\Source\Linux\Vader.Linux.Application.pas"/>
-        <IsPartOfProject Value="True"/>
+        <UnitName Value="Vader.Linux.Application.PlatformApplication"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="10" Y="32"/>
+        <CursorPos X="49"/>
         <UsageCount Value="48"/>
       </Unit21>
       <Unit22>
         <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="191"/>
-        <CursorPos X="16" Y="18"/>
-        <UsageCount Value="48"/>
+        <TopLine Value="44"/>
+        <CursorPos X="34" Y="58"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
       </Unit22>
       <Unit23>
         <Filename Value="..\..\Source\Vader.Opengl.Context.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="24" Y="24"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="27"/>
       </Unit23>
       <Unit24>
         <Filename Value="..\..\Source\Vader.Controls.Application.pas"/>
@@ -211,13 +206,13 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="17"/>
       </Unit24>
       <Unit25>
         <Filename Value="D:\usr\share\fpcsrc\3.0.0\packages\opengl\src\glu.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit25>
       <Unit26>
         <Filename Value="D:\usr\share\fpcsrc\3.0.0\packages\opengl\src\gl.pp"/>
@@ -225,21 +220,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1257"/>
         <CursorPos X="17" Y="1285"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit26>
       <Unit27>
         <Filename Value="D:\usr\share\fpcsrc\3.0.0\packages\opengles\src\gles20.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos Y="18"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit27>
       <Unit28>
         <Filename Value="C:\lazarus\fpc\3.0.0\source\rtl\win\wininc\unifun.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="181"/>
         <CursorPos X="10" Y="196"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit28>
       <Unit29>
         <Filename Value="C:\lazarus\fpc\3.0.0\source\rtl\win64\system.pp"/>
@@ -247,129 +242,175 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="3" Y="81"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit29>
+      <Unit30>
+        <Filename Value="..\..\..\..\..\..\..\usr\share\fpcsrc\3.0.0\packages\x11\src\xlib.pp"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="10"/>
+        <UsageCount Value="9"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="..\..\Source\Vader.Application.PlatformApplication.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="7"/>
+        <CursorPos X="30" Y="16"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="..\..\Source\Vader.Application.Application.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="27" Y="14"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.PlatformApplication.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="24" Y="18"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.PlatformApplication.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="9"/>
+        <CursorPos Y="35"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="..\..\..\..\..\..\..\usr\share\fpcsrc\3.0.0\packages\opengl\src\glx.pp"/>
+        <UnitName Value="GLX"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="227"/>
+        <CursorPos X="3" Y="244"/>
+        <UsageCount Value="9"/>
+      </Unit35>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="65" TopLine="44"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="229" Column="54" TopLine="206"/>
       </Position1>
       <Position2>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="66" TopLine="44"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
       </Position2>
       <Position3>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="69" TopLine="50"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="190" Column="29" TopLine="165"/>
       </Position3>
       <Position4>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="67" Column="53" TopLine="56"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="231" Column="28" TopLine="205"/>
       </Position4>
       <Position5>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="75" TopLine="56"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="191" Column="26" TopLine="199"/>
       </Position5>
       <Position6>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="76" TopLine="56"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="190" Column="29" TopLine="190"/>
       </Position6>
       <Position7>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="75" TopLine="56"/>
+        <Filename Value="TestNative.lpr"/>
+        <Caret Line="33" TopLine="6"/>
       </Position7>
       <Position8>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="78" TopLine="59"/>
+        <Filename Value="TestNative.lpr"/>
+        <Caret Line="34" TopLine="6"/>
       </Position8>
       <Position9>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="76" Column="41" TopLine="59"/>
+        <Filename Value="TestNative.lpr"/>
+        <Caret Line="31" Column="34" TopLine="6"/>
       </Position9>
       <Position10>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="75" Column="27" TopLine="50"/>
+        <Filename Value="TestNative.lpr"/>
+        <Caret Line="36" TopLine="6"/>
       </Position10>
       <Position11>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="41" TopLine="18"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.PlatformApplication.pas"/>
+        <Caret Line="34" TopLine="9"/>
       </Position11>
       <Position12>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="42" TopLine="18"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.PlatformApplication.pas"/>
+        <Caret Line="35" TopLine="9"/>
       </Position12>
       <Position13>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="43" TopLine="18"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.PlatformApplication.pas"/>
+        <Caret Line="36" TopLine="9"/>
       </Position13>
       <Position14>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="44" TopLine="18"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.PlatformApplication.pas"/>
+        <Caret Line="37" TopLine="9"/>
       </Position14>
       <Position15>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="42" TopLine="18"/>
+        <Filename Value="TestNative.lpr"/>
+        <Caret Line="34" TopLine="6"/>
       </Position15>
       <Position16>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="43" TopLine="18"/>
+        <Filename Value="TestNative.lpr"/>
+        <Caret Line="36" TopLine="6"/>
       </Position16>
       <Position17>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="44" TopLine="18"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.PlatformApplication.pas"/>
+        <Caret Line="34" TopLine="9"/>
       </Position17>
       <Position18>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="42" TopLine="18"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Application.PlatformApplication.pas"/>
+        <Caret Line="35" TopLine="9"/>
       </Position18>
       <Position19>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="43" TopLine="18"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="220" TopLine="204"/>
       </Position19>
       <Position20>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Application.pas"/>
-        <Caret Line="44" TopLine="18"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="221" TopLine="204"/>
       </Position20>
       <Position21>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="74" Column="4" TopLine="56"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="222" Column="18" TopLine="204"/>
       </Position21>
       <Position22>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="79" TopLine="56"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="226" Column="39" TopLine="204"/>
       </Position22>
       <Position23>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="78" Column="73" TopLine="54"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="228" Column="41" TopLine="204"/>
       </Position23>
       <Position24>
-        <Filename Value="TestNative.lpr"/>
-        <Caret Line="14" Column="17"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="227" Column="42" TopLine="204"/>
       </Position24>
       <Position25>
         <Filename Value="TestNative.lpr"/>
-        <Caret Line="10" Column="16"/>
+        <Caret Line="25" Column="11" TopLine="6"/>
       </Position25>
       <Position26>
-        <Filename Value="..\..\Source\Vader.Controls.Control.pas"/>
-        <Caret Line="33" Column="41" TopLine="21"/>
+        <Filename Value="..\..\Source\Vader.Controls.Window.pas"/>
+        <Caret Line="15" Column="6"/>
       </Position26>
       <Position27>
-        <Filename Value="..\..\Source\Vader.Controls.Control.pas"/>
-        <Caret Line="34" Column="19" TopLine="23"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="18" Column="3" TopLine="8"/>
       </Position27>
       <Position28>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="60" Column="12" TopLine="59"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="63" Column="3" TopLine="44"/>
       </Position28>
       <Position29>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="18" Column="22"/>
+        <Filename Value="..\..\Source\Linux\Vader.Linux.Controls.Window.pas"/>
+        <Caret Line="60" Column="3" TopLine="44"/>
       </Position29>
       <Position30>
-        <Filename Value="..\..\Source\Windows\Vader.Windows.Controls.Window.pas"/>
-        <Caret Line="30" Column="17" TopLine="16"/>
+        <Filename Value="TestNative.lpr"/>
+        <Caret Line="25" Column="11" TopLine="6"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
