@@ -2,7 +2,7 @@ program TestNative;
 
 uses
   SysUtils,
-  Vader.Application.Application,
+  Vader.Application,
   Vader.Controls.Window;
 
 type

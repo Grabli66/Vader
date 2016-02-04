@@ -5,14 +5,14 @@ unit Vader.Controls.Window;
 interface
 
 {$IFDEF WINDOWS}
-uses Vader.Windows.Controls.Window;
+uses Vader.Platform.Windows.Controls.Window;
 {$ENDIF}
 
 {$IFDEF LINUX}
 uses Vader.Linux.Controls.Window;
 {$ENDIF}
 
-type TVWindow = TVPlatformWindow;
+type TVWindow = TVPlatformWindowImpl;
 
 implementation
 

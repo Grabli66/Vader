@@ -1,4 +1,4 @@
-unit Vader.Windows.Controls.Window;
+unit Vader.Platform.Windows.Controls.Window;
 
 {$mode objfpc}{$H+}
 
@@ -9,13 +9,13 @@ uses
   Vader.System,
   Vader.Graphics.Textures,
   Vader.Controls.Control,
-  Vader.Controls.IWindow;
+  Vader.Platform.Controls.Window;
 
 type
 
-  { TVPlatformWindow }
+  { TVPlatformWindowImpl }
 
-  TVPlatformWindow = class(TVControl, IWindow)
+  TVPlatformWindowImpl = class(TVPlatformWindow)
   private
     fWndClass: TWndClassExW;
     fWndINST: HINST;
@@ -25,30 +25,41 @@ type
     fWndHandle: Handle;
   public
     constructor Create;
-    procedure SetCaption(Caption: WideString);
-    procedure DrawTexture(x, y: integer; texture: IPixelSurface);
+    procedure SetCaption(Caption: WideString); override;
+    procedure DrawTexture(x, y: integer; texture: IPixelSurface); override;
     procedure OnDraw; override;
+    procedure ProcessMessages; override;
   end;
 
 implementation
 
+var gWindow: TVPlatformWindowImpl;
+
 function WindowProcessMessage(hWnd: HWND; Msg: UINT; wParam: WPARAM;
   lParam: LPARAM): LRESULT; stdcall;
 begin
+  case Msg of
+    WM_DESTROY: begin
+      if gWindow.OnClose <> nil then gWindow.OnClose(gWindow);
+    end;
+  end;
+
   Result := DefWindowProcW(hWnd, Msg, wParam, lParam);
 end;
 
 { TVPlatformWindow }
 
-constructor TVPlatformWindow.Create;
+constructor TVPlatformWindowImpl.Create;
 var
   wndCpnSize, wndBrdSizeX, wndBrdSizeY: longint;
 begin
   inherited Create(nil);
-  fBox.x:= 100;
-  fBox.y:= 100;
-  fBox.Width:= 800;
-  fBox.Height:= 600;
+  gWindow:= self;
+
+  fBox.x := 100;
+  fBox.y := 100;
+  fBox.Width := 800;
+  fBox.Height := 600;
 
   fWndClassName := 'Vader';
   fWndCaptionW := 'Vader App';
@@ -79,9 +90,9 @@ begin
 
   fWndHandle := CreateWindowExW(WS_EX_APPWINDOW or WS_EX_CONTROLPARENT or
     WS_EX_WINDOWEDGE, fWndClassName, fWndCaptionW, WS_CAPTION or
-    WS_CLIPCHILDREN or WS_MAXIMIZEBOX or WS_MINIMIZEBOX or
-    WS_OVERLAPPED or WS_SIZEBOX or WS_SYSMENU or
-    WS_VISIBLE, fBox.x, fBox.y, fBox.Width, fBox.Height, 0, 0, HInstance, nil);
+    WS_CLIPCHILDREN or WS_MAXIMIZEBOX or WS_MINIMIZEBOX or WS_OVERLAPPED or
+    WS_SIZEBOX or WS_SYSMENU or WS_VISIBLE, fBox.x, fBox.y, fBox.Width,
+    fBox.Height, 0, 0, HInstance, nil);
 
   ShowWindow(fWndHandle, CmdShow);
   ShowWindow(fWndHandle, SW_SHOW);
@@ -90,19 +101,31 @@ begin
   BringWindowToTop(fWndHandle);
 end;
 
-procedure TVPlatformWindow.SetCaption(Caption: WideString);
+procedure TVPlatformWindowImpl.SetCaption(Caption: WideString);
 begin
 
 end;
 
-procedure TVPlatformWindow.DrawTexture(x, y: integer; texture: IPixelSurface);
+procedure TVPlatformWindowImpl.DrawTexture(x, y: integer; texture: IPixelSurface);
 begin
 
 end;
 
-procedure TVPlatformWindow.OnDraw;
+procedure TVPlatformWindowImpl.OnDraw;
 begin
   inherited OnDraw;
+end;
+
+procedure TVPlatformWindowImpl.ProcessMessages;
+var
+  AMessage: Msg;
+begin
+  while GetMessage(@AMessage, 0, 0, 0) do
+  begin
+    TranslateMessage(AMessage);
+    DispatchMessage(AMessage);
+  end;
+  Halt(AMessage.wParam);
 end;
 
 end.

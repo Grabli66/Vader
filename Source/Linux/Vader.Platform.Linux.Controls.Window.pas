@@ -1,4 +1,4 @@
-unit Vader.Linux.Controls.Window;
+unit Vader.Platform.Linux.Controls.Window;
 
 {$mode objfpc}{$H+}
 

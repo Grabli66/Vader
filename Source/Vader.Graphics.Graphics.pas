@@ -7,7 +7,7 @@ interface
 uses
   Vader.System,
   Vader.Math,
-  Vader.Geom,
+  Vader.Geometry,
   Vader.Graphics.Textures,
   Vader.Graphics.Color,
   Vader.Graphics.Pens,

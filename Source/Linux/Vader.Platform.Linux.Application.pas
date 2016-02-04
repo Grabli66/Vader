@@ -1,4 +1,4 @@
-unit Vader.Linux.Application.PlatformApplication;
+unit Vader.Platform.Linux.Application;
 
 {$mode objfpc}{$H+}
 
@@ -6,7 +6,7 @@ interface
 
 uses xlib,
      Vader.System,
-     Vader.Application.PlatformApplication,
+     Vader.Platform.Application,
      Vader.Controls.Window;
 
 type
@@ -17,7 +17,6 @@ type
   private
   public
     constructor Create;
-    procedure Run;
 end;
 
 implementation
@@ -27,13 +26,6 @@ implementation
 constructor TVPlatformApplicationImpl.Create;
 begin
   inherited Create;
-end;
-
-procedure TVPlatformApplicationImpl.Run;
-begin
-  if fCurrentWindow = nil then Exit;
-  fCurrentWindow.ProcessMessages;
-  fCurrentWindow.Free;
 end;
 
 end.

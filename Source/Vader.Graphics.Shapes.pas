@@ -5,7 +5,7 @@ unit Vader.Graphics.Shapes;
 interface
 
 uses Vader.System,
-     Vader.Geom;
+     Vader.Geometry;
 
 type
   { TVSegment }

@@ -6,33 +6,35 @@ interface
 
 uses
   Vader.System,
-  Vader.Geom,
+  Vader.Geometry,
   Vader.Controls.IWindow,
   Vader.Graphics.Graphics;
 
 type
 
-{ TVControl }
+  TNotifyEvent = procedure(Sender: TVaderObject) of object;
 
- TVControl = class(TVaderObject)
- protected
-   fBox: TVRect;
-   fGraphics : TVGraphics;
-   fParent: TVControl;
-   fWindow: IWindow;
-//   fChilds:
- public
-   constructor Create(parent: TVControl);
-   property Graphics: TVGraphics read fGraphics;
-   property Parent: TVControl read fParent;
-   property Window: IWindow read fWindow;
-   property Box: TVRect read fBox;
-   procedure SetPosition(x,y: Integer); virtual;
-   procedure SetSize(width, height: Integer); virtual;
-   // Adds child to control
-   procedure AddChild(child: TVControl);
-   procedure OnDraw; virtual;
-end;
+  { TVControl }
+
+  TVControl = class(TVaderObject)
+  protected
+    fBox: TVRect;
+    fGraphics: TVGraphics;
+    fParent: TVControl;
+    fWindow: IWindow;
+    //   fChilds:
+  public
+    constructor Create(parent: TVControl);
+    property Graphics: TVGraphics read fGraphics;
+    property Parent: TVControl read fParent;
+    property Window: IWindow read fWindow;
+    property Box: TVRect read fBox;
+    procedure SetPosition(x, y: integer); virtual;
+    procedure SetSize(Width, Height: integer); virtual;
+    // Adds child to control
+    procedure AddChild(child: TVControl);
+    procedure OnDraw; virtual;
+  end;
 
 implementation
 
@@ -40,25 +42,27 @@ implementation
 
 constructor TVControl.Create(parent: TVControl);
 begin
-  if parent = nil then Exit;
-  if (parent is IWindow) then begin
-    fWindow:= parent as IWindow;
+  if parent = nil then
+    Exit;
+  if (parent is IWindow) then
+  begin
+    fWindow := parent as IWindow;
     Exit;
   end;
 
-  fParent:= parent;
+  fParent := parent;
 end;
 
-procedure TVControl.SetPosition(x, y: Integer);
+procedure TVControl.SetPosition(x, y: integer);
 begin
-  fBox.x:=x;
-  fBox.y:=y;
+  fBox.x := x;
+  fBox.y := y;
 end;
 
-procedure TVControl.SetSize(width, height: Integer);
+procedure TVControl.SetSize(Width, Height: integer);
 begin
-  fBox.Width:=width;
-  fBox.Height:=height;
+  fBox.Width := Width;
+  fBox.Height := Height;
 end;
 
 procedure TVControl.AddChild(child: TVControl);

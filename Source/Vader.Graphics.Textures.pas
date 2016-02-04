@@ -4,7 +4,7 @@ interface
 
 uses
   Vader.System,
-  Vader.Geom,
+  Vader.Geometry,
   Vader.Graphics.Color;
 
 type

@@ -1,4 +1,4 @@
-unit Vader.Geom;
+unit Vader.Geometry;
 
 {$mode objfpc}{$H+}
 
