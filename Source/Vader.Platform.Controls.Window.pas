@@ -16,7 +16,7 @@ type TVPlatformWindow = class(TVControl)
     property OnClose: TNotifyEvent read fOnClose write fOnClose;
     procedure SetCaption(caption: WideString); virtual; abstract;
     procedure DrawTexture(x,y: integer; texture: IPixelSurface); virtual; abstract;
-    procedure ProcessMessages; virtual; abstract;
+    procedure Show; virtual; abstract;
 end;
 
 implementation

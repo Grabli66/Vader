@@ -18,17 +18,20 @@ type
     function GetHeight: Integer;
   end;
 
+  TVPixelArray = array of TVRGBAColor;
+
   { TVTexture }
   TVTexture = class(TVaderObject, IPixelSurface)
   private
     fWidth: integer;
     fHeight: integer;
-    fPixels: array of TVRGBAColor;
+    fPixels: TVPixelArray;
     function AlphaBlend(src, dst: TVRGBAColor): TVRGBAColor;
   public
     constructor Create(Width, Height: integer); overload;
     constructor Create(rect: TVRect); overload;
     destructor Destroy; override;
+    property Pixels: TVPixelArray read fPixels;
     procedure FillColor(color: TVRGBAColor);
     function GetWidth: Integer;
     function GetHeight: Integer;

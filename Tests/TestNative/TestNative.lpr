@@ -11,7 +11,6 @@ type
 
   TMyWindow = class(TVWindow)
   public
-    procedure OnDraw; override;
   end;
 
 var
@@ -19,10 +18,6 @@ var
   window: TMyWindow;
 
 { TMyWindow }
-
-procedure TMyWindow.OnDraw;
-begin
-end;
 
 begin
   if FileExists('heap.trc') then

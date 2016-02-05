@@ -33,7 +33,7 @@ end;
 procedure TVPlatformApplication.Run;
 begin
   if fCurrentWindow = nil then Exit;
-  fCurrentWindow.ProcessMessages;
+  fCurrentWindow.Show;
   fCurrentWindow.Free;
 end;
 

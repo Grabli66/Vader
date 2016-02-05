@@ -7,7 +7,7 @@ interface
 uses
   Vader.System,
   Vader.Geometry,
-  Vader.Controls.IWindow,
+//  Vader.Controls.Window,
   Vader.Graphics.Graphics;
 
 type
@@ -21,13 +21,13 @@ type
     fBox: TVRect;
     fGraphics: TVGraphics;
     fParent: TVControl;
-    fWindow: IWindow;
+//    fWindow: TVWindow;
     //   fChilds:
   public
     constructor Create(parent: TVControl);
     property Graphics: TVGraphics read fGraphics;
     property Parent: TVControl read fParent;
-    property Window: IWindow read fWindow;
+//    property Window: TVWindow read fWindow;
     property Box: TVRect read fBox;
     procedure SetPosition(x, y: integer); virtual;
     procedure SetSize(Width, Height: integer); virtual;
@@ -42,7 +42,7 @@ implementation
 
 constructor TVControl.Create(parent: TVControl);
 begin
-  if parent = nil then
+  {if parent = nil then
     Exit;
   if (parent is IWindow) then
   begin
@@ -50,7 +50,7 @@ begin
     Exit;
   end;
 
-  fParent := parent;
+  fParent := parent;}
 end;
 
 procedure TVControl.SetPosition(x, y: integer);
