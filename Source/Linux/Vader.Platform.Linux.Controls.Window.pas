@@ -9,6 +9,7 @@ uses
   Vader.System,
   Vader.Controls.Control,
   Vader.Platform.Controls.Window,
+  Vader.Graphics.Plot,
   Vader.Graphics.Textures;
 
 type
@@ -33,6 +34,7 @@ type
     fWndHandle: TWindow;
     { Opengl context }
     fOglContext: GLXContext;
+    fTextureName: GLuint;
     // Connects to X Server
     procedure ChooseVisual;
     procedure ConnectXServer;
@@ -188,10 +190,12 @@ begin
 end;
 
 procedure TVPlatformWindowImpl.OpenGLInit;
-{var plot: TVPlotter;
+var plot: TVPlotter;
   texture: TVTexture;
-  circle: TVCirclePlotSettings;}
+  circle: TVCirclePlotSettings;
 begin
+  glClearColor(1.0,1.0,1.0,1.0);
+
   glEnable(GL_BLEND);
   glEnable(GL_TEXTURE_2D);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -204,14 +208,14 @@ begin
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
- {texture:= TVTexture.Create(800, 600);
-  texture.FillColor($FF3333FF);
+  texture:= TVTexture.Create(800, 600);
+//  texture.FillColor($FF000000);
   plot:= TVPlotter.Create;
-  circle.Color:=$FF000000;
+  circle.Color:=$FF1155AA;
   circle.x:=100;
   circle.y:=100;
-  circle.Radius:=10;
-//  plot.PlotCircle(texture, circle);
+  circle.Radius:=50;
+  plot.PlotCircle(texture, circle);
 
   glGenTextures(1, @fTextureName);
   glBindTexture(GL_TEXTURE_2D, fTextureName);
@@ -219,7 +223,7 @@ begin
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 800, 600, 0, GL_RGBA, GL_UNSIGNED_BYTE, @texture.Pixels[1]);
   texture.Free;
-  plot.Free;  }
+  plot.Free;
 end;
 
 procedure TVPlatformWindowImpl.Start;
@@ -252,19 +256,23 @@ begin
   inherited OnDraw;
 
   { draw here }
-  glClearColor(1.0,1.0,1.0,1.0);
   glClear(GL_COLOR_BUFFER_BIT);
   glLoadIdentity();
 
-  glColor3f(1.0, 1.0, 1.0);
- // glBindTexture(GL_TEXTURE_2D, fTextureName);
+ // glColor3f(0.0, 1.0, 1.0);
+  glBindTexture(GL_TEXTURE_2D, fTextureName);
   glBegin(GL_QUADS);
+  glTexCoord2d(0, 0);
   glVertex2i(0, 0);
+  glTexCoord2d(0, 1);
   glVertex2i(0, fBox.Height);
+  glTexCoord2d(1, 1);
   glVertex2i(fBox.Width, fBox.Height);
+  glTexCoord2d(1, 0);
   glVertex2i(fBox.Width, 0);
   glEnd();
 
+  glXWaitGL;
   SwapBuffers;   // put opengl stuff to screen
 end;
 
