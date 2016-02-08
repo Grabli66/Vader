@@ -9,7 +9,7 @@ uses Vader.Platform.Windows.Controls.Window;
 {$ENDIF}
 
 {$IFDEF LINUX}
-uses Vader.Linux.Controls.Window;
+uses Vader.Platform.Linux.Controls.Window;
 {$ENDIF}
 
 type TVWindow = TVPlatformWindowImpl;

@@ -8,14 +8,14 @@ uses
   GL, GLU, GLX, GLext, X, XLib, XUtil,
   Vader.System,
   Vader.Controls.Control,
-  Vader.Controls.IWindow,
+  Vader.Platform.Controls.Window,
   Vader.Graphics.Textures;
 
 type
 
-  { TVPlatformWindow }
+  { TVPlatformWindowImpl }
 
-  TVPlatformWindow = class(TVControl, IWindow)
+  TVPlatformWindowImpl = class(TVPlatformWindow)
   private
     fCaption: PChar;
     { Pointer to display }
@@ -40,6 +40,7 @@ type
     procedure CreateWindow;
     procedure DestroyGLContext;
     procedure DestroyWindow;
+    procedure OpenGLInit;
     procedure Start;
     procedure SwapBuffers;
   public
@@ -47,14 +48,15 @@ type
     destructor Destroy; override;
     procedure SetCaption(Caption: WideString);
     procedure DrawTexture(x, y: integer; texture: IPixelSurface);
-    procedure ProcessMessages;
+    procedure Show; override;
+    procedure OnDraw; override;
   end;
 
 implementation
 
 { TVPlatformWindow }
 
-constructor TVPlatformWindow.Create;
+constructor TVPlatformWindowImpl.Create;
 begin
   inherited Create(nil);
   fBox.x := 100;
@@ -65,7 +67,7 @@ begin
   Start;
 end;
 
-destructor TVPlatformWindow.Destroy;
+destructor TVPlatformWindowImpl.Destroy;
 begin
   DestroyGLContext;
   DestroyWindow;
@@ -75,7 +77,7 @@ begin
 end;
 
 // Connects to X Server
-procedure TVPlatformWindow.ConnectXServer;
+procedure TVPlatformWindowImpl.ConnectXServer;
 begin
   fScrDisplay := XOpenDisplay(nil);
   if not Assigned(fScrDisplay) then
@@ -86,7 +88,7 @@ begin
 end;
 
 // Choose display settings
-procedure TVPlatformWindow.ChooseVisual;
+procedure TVPlatformWindowImpl.ChooseVisual;
 begin
   fGlAttr[0] := GLX_RGBA;
   fGlAttr[1] := GLX_DOUBLEBUFFER;
@@ -104,7 +106,7 @@ begin
 end;
 
 { Creates opengl context }
-procedure TVPlatformWindow.CreateGLContext;
+procedure TVPlatformWindowImpl.CreateGLContext;
 var
   attribs: array[0..4] of integer;
   nitems: integer;
@@ -136,7 +138,7 @@ begin
 end;
 
 // Creates window
-procedure TVPlatformWindow.CreateWindow;
+procedure TVPlatformWindowImpl.CreateWindow;
 var
   wndValueMask: integer;
   rootWnd: TWindow;
@@ -164,7 +166,7 @@ begin
 end;
 
 { Free opengl context }
-procedure TVPlatformWindow.DestroyGLContext;
+procedure TVPlatformWindowImpl.DestroyGLContext;
 begin
   if not glXMakeCurrent(fScrDisplay, None, nil) then
     Exit;
@@ -174,18 +176,53 @@ begin
 end;
 
 { Free window }
-procedure TVPlatformWindow.DestroyWindow;
+procedure TVPlatformWindowImpl.DestroyWindow;
 begin
   XDestroyWindow(fScrDisplay, fWndHandle);
   glXWaitX;
 end;
 
-procedure TVPlatformWindow.SwapBuffers;
+procedure TVPlatformWindowImpl.SwapBuffers;
 begin
   glXSwapBuffers(fScrDisplay, fWndHandle);
 end;
 
-procedure TVPlatformWindow.Start;
+procedure TVPlatformWindowImpl.OpenGLInit;
+{var plot: TVPlotter;
+  texture: TVTexture;
+  circle: TVCirclePlotSettings;}
+begin
+  glEnable(GL_BLEND);
+  glEnable(GL_TEXTURE_2D);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glViewport(0, 0, fBox.Width, fBox.Height);
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluOrtho2D(0, fBox.Width, 0, fBox.Height);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+ {texture:= TVTexture.Create(800, 600);
+  texture.FillColor($FF3333FF);
+  plot:= TVPlotter.Create;
+  circle.Color:=$FF000000;
+  circle.x:=100;
+  circle.y:=100;
+  circle.Radius:=10;
+//  plot.PlotCircle(texture, circle);
+
+  glGenTextures(1, @fTextureName);
+  glBindTexture(GL_TEXTURE_2D, fTextureName);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 800, 600, 0, GL_RGBA, GL_UNSIGNED_BYTE, @texture.Pixels[1]);
+  texture.Free;
+  plot.Free;  }
+end;
+
+procedure TVPlatformWindowImpl.Start;
 var
   wnd_Title: TXTextProperty;
 begin
@@ -194,22 +231,44 @@ begin
   ChooseVisual;
   CreateWindow;
   CreateGLContext;
+  OpenGLInit;
 
   // Устанавливает название окна
   XStringListToTextProperty(@fCaption, 1, @wnd_Title);
   XSetWMName(fScrDisplay, fWndHandle, @wnd_Title);
 end;
 
-procedure TVPlatformWindow.SetCaption(Caption: WideString);
+procedure TVPlatformWindowImpl.SetCaption(Caption: WideString);
 begin
 
 end;
 
-procedure TVPlatformWindow.DrawTexture(x, y: integer; texture: IPixelSurface);
+procedure TVPlatformWindowImpl.DrawTexture(x, y: integer; texture: IPixelSurface);
 begin
 end;
 
-procedure TVPlatformWindow.ProcessMessages;
+procedure TVPlatformWindowImpl.OnDraw;
+begin
+  inherited OnDraw;
+
+  { draw here }
+  glClearColor(1.0,1.0,1.0,1.0);
+  glClear(GL_COLOR_BUFFER_BIT);
+  glLoadIdentity();
+
+  glColor3f(1.0, 1.0, 1.0);
+ // glBindTexture(GL_TEXTURE_2D, fTextureName);
+  glBegin(GL_QUADS);
+  glVertex2i(0, 0);
+  glVertex2i(0, fBox.Height);
+  glVertex2i(fBox.Width, fBox.Height);
+  glVertex2i(fBox.Width, 0);
+  glEnd();
+
+  SwapBuffers;   // put opengl stuff to screen
+end;
+
+procedure TVPlatformWindowImpl.Show;
 var
   running: boolean;
   wmDeleteMessage: TAtom;
