@@ -152,9 +152,6 @@ begin
 end;
 
 procedure TVPlatformWindowImpl.OpenGLInit;
-var plot: TVPlotter;
-  texture: TVTexture;
-  circle: TVCirclePlotSettings;
 begin
   glEnable(GL_BLEND);
   glEnable(GL_TEXTURE_2D);
@@ -167,23 +164,6 @@ begin
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-
- texture:= TVTexture.Create(800, 600);
-  texture.FillColor($FF3333FF);
-  plot:= TVPlotter.Create;
-  circle.Color:=$FF000000;
-  circle.x:=100;
-  circle.y:=100;
-  circle.Radius:=10;
-//  plot.PlotCircle(texture, circle);
-
-  glGenTextures(1, @fTextureName);
-  glBindTexture(GL_TEXTURE_2D, fTextureName);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 800, 600, 0, GL_RGBA, GL_UNSIGNED_BYTE, @texture.Pixels[1]);
-  texture.Free;
-  plot.Free;
 end;
 
 procedure TVPlatformWindowImpl.SetCaption(Caption: WideString);
@@ -192,8 +172,15 @@ begin
 end;
 
 procedure TVPlatformWindowImpl.DrawTexture(x, y: integer; texture: IPixelSurface);
+var pixels: TVPixelArray;
 begin
-
+  glGenTextures(1, @fTextureName);
+  glBindTexture(GL_TEXTURE_2D, fTextureName);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  pixels:= texture.GetPixels;
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture.GetWidth, texture.GetHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, @pixels[0]);
+  OnDraw;
 end;
 
 procedure TVPlatformWindowImpl.OnDraw;
@@ -208,11 +195,15 @@ begin
   glLoadIdentity();
 
   //glColor3f(1.0, 1.0, 1.0);
- // glBindTexture(GL_TEXTURE_2D, fTextureName);
+  glBindTexture(GL_TEXTURE_2D, fTextureName);
   glBegin(GL_QUADS);
+  glTexCoord2d(0, 0);
   glVertex2i(0, 0);
+  glTexCoord2d(0, 1);
   glVertex2i(0, fBox.Height);
+  glTexCoord2d(1, 1);
   glVertex2i(fBox.Width, fBox.Height);
+  glTexCoord2d(1, 0);
   glVertex2i(fBox.Width, 0);
   glEnd();
 

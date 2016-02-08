@@ -45,15 +45,15 @@ type
   public
     constructor Create;
     // Draws line on surface
-    procedure PlotLine(texture: IPixelSurface; linePlotSettings: TVLinePlotSettings);
+    procedure PlotLine(const texture: IPixelSurface; linePlotSettings: TVLinePlotSettings);
     // Draws circle on surface
-    procedure PlotCircle(texture: IPixelSurface;
+    procedure PlotCircle(const texture: IPixelSurface;
       circlePlotSettings: TVCirclePlotSettings);
     // Draws poly on surface
-    procedure PlotPoly(texture: IPixelSurface;
+    procedure PlotPoly(const texture: IPixelSurface;
       polyPlotSettings: TVPolyPlotSettings);
     // Fills surface
-    procedure SolidFillSurface(texture: IPixelSurface;
+    procedure SolidFillSurface(const texture: IPixelSurface;
       surfaceFillSettings: TVSurfaceFillSettings);
   end;
 
@@ -75,7 +75,7 @@ begin
   inherited Create;
 end;
 
-procedure TVPlotter.PlotLine(texture: IPixelSurface;
+procedure TVPlotter.PlotLine(const texture: IPixelSurface;
   linePlotSettings: TVLinePlotSettings);
 var
   dx, dy, i, sx, sy, check, e, nx, ny: integer;
@@ -118,7 +118,7 @@ begin
   end;
 end;
 
-procedure TVPlotter.PlotCircle(texture: IPixelSurface;
+procedure TVPlotter.PlotCircle(const texture: IPixelSurface;
   circlePlotSettings: TVCirclePlotSettings);
 var
   x, y, err, xm, ym, r: integer;
@@ -155,7 +155,7 @@ begin
   until not (x < 0);
 end;
 
-procedure TVPlotter.PlotPoly(texture: IPixelSurface;
+procedure TVPlotter.PlotPoly(const texture: IPixelSurface;
   polyPlotSettings: TVPolyPlotSettings);
 var
   pointCount, steps, i: integer;
@@ -180,7 +180,7 @@ begin
   end;
 end;
 
-procedure TVPlotter.SolidFillSurface(texture: IPixelSurface;
+procedure TVPlotter.SolidFillSurface(const texture: IPixelSurface;
   surfaceFillSettings: TVSurfaceFillSettings);
 var
   start, work: Boolean;

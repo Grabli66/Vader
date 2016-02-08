@@ -8,17 +8,18 @@ uses
   Vader.Graphics.Color;
 
 type
+  TVPixelArray = array of TVRGBAColor;
+
   // Interface for surfaces with direct access for pixels
   IPixelSurface = interface
     ['{F325E03F-F96C-4B48-950B-A3542AD692DE}']
     procedure FillColor(color: TVRGBAColor);
     procedure SetPixel(x, y: integer; color: TVRGBAColor);
     function GetPixel(x, y: integer): TVRGBAColor;
+    function GetPixels : TVPixelArray;
     function GetWidth: Integer;
     function GetHeight: Integer;
   end;
-
-  TVPixelArray = array of TVRGBAColor;
 
   { TVTexture }
   TVTexture = class(TVaderObject, IPixelSurface)
@@ -32,6 +33,7 @@ type
     constructor Create(rect: TVRect); overload;
     destructor Destroy; override;
     property Pixels: TVPixelArray read fPixels;
+    function GetPixels: TVPixelArray;
     procedure FillColor(color: TVRGBAColor);
     function GetWidth: Integer;
     function GetHeight: Integer;
@@ -90,6 +92,11 @@ destructor TVTexture.Destroy;
 begin
   fPixels := nil;
   inherited Destroy;
+end;
+
+function TVTexture.GetPixels: TVPixelArray;
+begin
+  Result:= fPixels;
 end;
 
 procedure TVTexture.FillColor(color: TVRGBAColor);
