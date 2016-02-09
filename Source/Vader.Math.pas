@@ -1,6 +1,6 @@
 unit Vader.Math;
 
-{$mode objfpc}{$H+}
+{$I Vader.inc}
 
 interface
 
@@ -30,16 +30,16 @@ end;
 
 function Floor(x: double): integer;
 begin
-  Floor := Trunc(x);
+  Result := Trunc(x);
   if Frac(x) < 0 then
-    Floor := Floor - 1;
+    Result := Result - 1;
 end;
 
 function Ceil(x: double): integer;
 begin
-  Ceil := Trunc(x);
+  Result := Trunc(x);
   if Frac(x) > 0 then
-    Ceil := Ceil + 1;
+    Result := Result + 1;
 end;
 
 end.

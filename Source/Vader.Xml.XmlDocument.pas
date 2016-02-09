@@ -1,5 +1,7 @@
 unit Vader.Xml.XmlDocument;
 
+{$I Vader.inc}
+
 interface
 
 uses Vader.Xml.XmlNode;

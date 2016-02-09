@@ -1,6 +1,6 @@
 unit Vader.Platform.Controls.Window;
 
-{$mode objfpc}
+{$I Vader.inc}
 
 interface
 

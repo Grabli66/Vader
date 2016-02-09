@@ -1,6 +1,6 @@
 unit Vader.Platform.Application;
 
-{$mode objfpc}{$H+}
+{$I Vader.inc}
 
 interface
 
@@ -27,7 +27,7 @@ implementation
 procedure TVPlatformApplication.SetWindow(window: TVWindow);
 begin
   fCurrentWindow := window;
-  fCurrentWindow.OnClose:=@OnWindowClose;
+  fCurrentWindow.OnClose:= OnWindowClose;
 end;
 
 procedure TVPlatformApplication.Run;

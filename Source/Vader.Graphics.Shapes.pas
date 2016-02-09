@@ -1,6 +1,6 @@
 unit Vader.Graphics.Shapes;
 
-{$mode objfpc}{$H+}
+{$I Vader.inc}
 
 interface
 
@@ -102,7 +102,7 @@ type
 
   TVPathShape = class(TVShape)
   public
-    constructor Create;
+    constructor Create; overload;
     constructor Create(originX, originY: integer); overload;
     procedure MoveTo(x, y: integer);
     procedure LineTo(x, y: integer);

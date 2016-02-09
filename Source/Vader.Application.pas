@@ -1,6 +1,6 @@
 unit Vader.Application;
 
-{$mode objfpc}{$H+}
+{$I Vader.inc}
 
 interface
 

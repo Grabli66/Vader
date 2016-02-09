@@ -1,5 +1,7 @@
 unit Vader.Graphics.Pens;
 
+{$I Vader.inc}
+
 interface
 
 uses
@@ -20,7 +22,7 @@ type
     fIsAntialiasing: Boolean;
     procedure SetColor(value: TVColor);
   public
-    constructor Create(color: TVColor);
+    constructor Create(color: TVColor); overload;
     constructor Create(color: TVRGBAColor); overload;
     destructor Destroy; override;
     property Width: integer read fWidth write fWidth;

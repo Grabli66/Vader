@@ -1,5 +1,7 @@
 unit Vader.Graphics.Textures;
 
+{$I Vader.inc}
+
 interface
 
 uses

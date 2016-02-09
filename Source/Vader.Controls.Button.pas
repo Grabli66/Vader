@@ -1,6 +1,6 @@
 unit Vader.Controls.Button;
 
-{$mode objfpc}{$H+}
+{$I Vader.inc}
 
 interface
 

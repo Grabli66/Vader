@@ -1,9 +1,12 @@
 program TestNative;
 
+{$mode delphi}
+
 uses
   SysUtils,
   Vader.Application,
-  Vader.Controls.Window;
+  Vader.Controls.Window,
+  Vader.Collections, Vader.Platform.Windows.Application;
 
 type
 
@@ -14,7 +17,9 @@ type
   end;
 
 var
-  app: TVApplication;
+  arr: IList<Integer>;
+  it: Integer;
+  app: TVPlatformApplicationImpl;
   window: TMyWindow;
 
 { TMyWindow }
@@ -24,8 +29,17 @@ begin
     DeleteFile('heap.trc');
   SetHeapTraceOutput('heap.trc');
 
-  app := TVApplication.Create;
+  {app := TVApplication.Create;
   window := TMyWindow.Create;
   app.SetWindow(window);
-  app.Run;
+  app.Run;}
+  arr:= TArrayList<Integer>.Create();
+  arr.Add(11);
+  arr.Add(12);
+  for it in arr do begin
+    WriteLn(it);
+  end;
+  ReadLn;
+//  WriteLn(arr.GetItem(0));
+//  arr.Free;
 end.

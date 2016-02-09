@@ -1,5 +1,7 @@
 unit Vader.Graphics.Brushes;
 
+{$I Vader.inc}
+
 interface
 
 uses

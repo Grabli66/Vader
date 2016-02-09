@@ -1,6 +1,6 @@
 unit Vader.Platform.Windows.Application;
 
-{$mode objfpc}{$H+}
+{$I ../Vader.inc}
 
 interface
 

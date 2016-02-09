@@ -1,6 +1,6 @@
 unit Vader.Platform.Linux.Controls.Window;
 
-{$mode objfpc}{$H+}
+{$I Vader.inc}
 
 interface
 

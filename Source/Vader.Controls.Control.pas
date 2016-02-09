@@ -1,6 +1,6 @@
 unit Vader.Controls.Control;
 
-{$mode objfpc}{$H+}
+{$I Vader.inc}
 
 interface
 
@@ -8,7 +8,8 @@ uses
   Vader.System,
   Vader.Geometry,
 //  Vader.Controls.Window,
-  Vader.Graphics.Graphics;
+  Vader.Graphics.Graphics,
+  Vader.Collections;
 
 type
 
@@ -22,7 +23,7 @@ type
     fGraphics: TVGraphics;
     fParent: TVControl;
 //    fWindow: TVWindow;
-    //   fChilds:
+    fChilds: IList<TVControl>;
   public
     constructor Create(parent: TVControl);
     property Graphics: TVGraphics read fGraphics;
@@ -51,6 +52,7 @@ begin
   end;
 
   fParent := parent;}
+  fChilds:= TArrayList<TVControl>.Create;
 end;
 
 procedure TVControl.SetPosition(x, y: integer);
@@ -67,7 +69,7 @@ end;
 
 procedure TVControl.AddChild(child: TVControl);
 begin
-
+  fChilds.Add(child);
 end;
 
 procedure TVControl.OnDraw;

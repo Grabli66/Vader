@@ -1,6 +1,6 @@
 unit Vader.Platform.Windows.Controls.Window;
 
-{$mode objfpc}{$H+}
+{$I ../Vader.inc}
 
 interface
 
@@ -75,7 +75,7 @@ begin
   case Msg of
     WM_DESTROY:
     begin
-      if gWindow.OnClose <> nil then
+      if Assigned(gWindow.OnClose) then
         gWindow.OnClose(gWindow);
     end;
     WM_PAINT:

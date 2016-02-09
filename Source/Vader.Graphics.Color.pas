@@ -1,6 +1,6 @@
 unit Vader.Graphics.Color;
 
-{$mode objfpc}{$H+}
+{$I Vader.inc}
 
 interface
 
@@ -18,10 +18,10 @@ type
     fColor: TVRGBAColor;
     procedure ParseColor(color: string);
   public
-    constructor Create(color: TVRGBAColor);
-    constructor Create(color: string);
-    constructor Create(r, g, b: byte);
-    constructor Create(r, g, b, a: byte);
+    constructor Create(color: TVRGBAColor); overload;
+    constructor Create(color: string); overload;
+    constructor Create(r, g, b: byte); overload;
+    constructor Create(r, g, b, a: byte); overload;
     property RGBA: TVRGBAColor read fColor write fColor;
     function GetRed: byte;
     function GetGreen: byte;

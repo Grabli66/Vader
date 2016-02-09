@@ -1,6 +1,6 @@
 unit Vader.Graphics.Plot;
 
-{$mode objfpc}{$H+}
+{$I Vader.inc}
 
 interface
 
