@@ -5,7 +5,18 @@ unit Vader.System;
 interface
 
 type
+  TByte = Byte;
+  TSByte = ShortInt;
+  TInt16 = SmallInt;
+  TUInt16 = Word;
+  TInt32 = LongInt;
+  TUInt32 = Longword;
+  TInt64 = Int64;
+  TUint64 = QWord;
+  TString = String;
+  TChar = char;
 
+type
   { TVaderObject }
 
   TVaderObject = class(TInterfacedObject)

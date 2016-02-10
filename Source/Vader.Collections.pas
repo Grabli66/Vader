@@ -129,7 +129,12 @@ begin
 end;
 
 procedure TArrayList<T>.Clear;
+var i: Integer;
 begin
+  for i:= 0 to fSize -1 do begin
+    fItems[i].Free;
+  end;
+
   fSize := 0;
   Init(fInitCapacity);
 end;

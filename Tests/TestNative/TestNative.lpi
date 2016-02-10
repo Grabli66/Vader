@@ -135,7 +135,6 @@
       <Unit25>
         <Filename Value="..\..\Source\Vader.inc"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Unit1"/>
       </Unit25>
     </Units>
   </ProjectOptions>
