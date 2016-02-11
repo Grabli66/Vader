@@ -4,10 +4,10 @@ program TestNative;
 
 uses
   SysUtils,
+  Vader.System,
   Vader.Application,
   Vader.Controls.Window,
-  Vader.Collections,
-  Vader.Platform.Windows.Application;
+  Vader.Collections;
 
 type
   { TMyWindow }
@@ -17,8 +17,9 @@ type
   end;
 
 var
-  app: TVPlatformApplicationImpl;
   window: TMyWindow;
+  b: TByte;
+  s: TDateTime;
 
 { TMyWindow }
 
@@ -27,12 +28,15 @@ begin
     DeleteFile('heap.trc');
   SetHeapTraceOutput('heap.trc');
 
+  b:= TByte.Parse('24');
+  WriteLn(b.ToString);
+
  { app := TVApplication.Create;
   window := TMyWindow.Create;
   app.SetWindow(window);
   app.Run;}
 
- // ReadLn;
+//  ReadLn;
 //  WriteLn(arr.GetItem(0));
 //  arr.Free;
 end.

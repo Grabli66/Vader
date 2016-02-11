@@ -10,8 +10,6 @@ uses Windows,
 
 type
 
-{ TVPlatformApplication }
-
  { TVPlatformApplicationImpl }
 
  TVPlatformApplicationImpl = class(TVPlatformApplication)
@@ -23,7 +21,7 @@ end;
 
 implementation
 
-{ TVPlatformApplication }
+{ TVPlatformApplicationImpl }
 
 constructor TVPlatformApplicationImpl.Create;
 begin

@@ -79,11 +79,11 @@ end;
 destructor TVGraphics.Destroy;
 begin
   if Assigned(fPen) then
-    FreeAndNil(fPen);
+    fPen.Free;
   if Assigned(fBrush) then
-    FreeAndNil(fBrush);
+    fBrush.Free;
   if Assigned(fFont) then
-    FreeAndNil(fFont);
+    fFont.Free;
   inherited Destroy;
 end;
 

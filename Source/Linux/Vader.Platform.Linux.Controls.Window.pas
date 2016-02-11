@@ -1,6 +1,6 @@
 unit Vader.Platform.Linux.Controls.Window;
 
-{$I Vader.inc}
+{$I ../Vader.inc}
 
 interface
 

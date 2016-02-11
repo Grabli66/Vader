@@ -4,38 +4,58 @@ unit Vader.System;
 
 interface
 
+//uses sysutils;
+
 type
-  TByte = Byte;
-  TSByte = ShortInt;
-  TInt16 = SmallInt;
-  TUInt16 = Word;
-  TInt32 = LongInt;
-  TUInt32 = Longword;
-  TInt64 = Int64;
+  TString = string;
+
+type
+
+  { TByte }
+
+  TByte = record
+    Value: Byte;
+    class function Parse(s: TString): TByte; static;
+    function ToString: TString;
+  end;
+
+
+  TSByte = shortint;
+  TInt16 = smallint;
+  TUInt16 = word;
+  TInt32 = longint;
+  TUInt32 = longword;
+  TInt64 = int64;
   TUint64 = QWord;
-  TString = String;
   TChar = char;
+
+  TDateTime = record
+    Value: Double;
+//    class function FromString(s: String): TDateTime;
+  end;
 
 type
   { TVaderObject }
 
   TVaderObject = class(TInterfacedObject)
-    public
-      // Assings values from one object to another
-      procedure Assign(src: TVaderObject); virtual;
+  public
+    // Assings values from one object to another
+    procedure Assign(src: TVaderObject); virtual;
   end;
-
-procedure FreeAndNil(var Obj);
 
 implementation
 
-procedure FreeAndNil(var Obj);
-var
-  P: TObject;
+{ TByte }
+
+class function TByte.Parse(s: TString): TByte;
+var error: word;
 begin
-  P := TObject(Obj);
-  TObject(Obj) := nil;  // clear the reference before destroying the object
-  P.Free;
+  Val(s, Result.Value, error);
+end;
+
+function TByte.ToString: TString;
+begin
+  System.Str(Value, result);
 end;
 
 { TVaderObject }

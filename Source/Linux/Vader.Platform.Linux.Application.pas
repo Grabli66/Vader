@@ -1,6 +1,6 @@
 unit Vader.Platform.Linux.Application;
 
-{$I Vader.inc}
+{$I ../Vader.inc}
 
 interface
 
