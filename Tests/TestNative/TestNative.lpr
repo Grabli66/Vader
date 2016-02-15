@@ -3,7 +3,7 @@ program TestNative;
 {$mode delphi}
 
 uses
-  SysUtils,
+  SysUtils, dateutils,
   Vader.System,
   Vader.Application,
   Vader.Controls.Window,
@@ -18,8 +18,11 @@ type
 
 var
   window: TMyWindow;
-  b: TByte;
+  b1, b2: TByte;
   s: TDateTime;
+  st: TString;
+  g: TInt32;
+  ts: TTimeSpan;
 
 { TMyWindow }
 
@@ -28,8 +31,10 @@ begin
     DeleteFile('heap.trc');
   SetHeapTraceOutput('heap.trc');
 
-  b:= TByte.Parse('24');
-  WriteLn(b.ToString);
+  b1:= 32 shl 1;
+  st:= 'говнище';
+  writeln(b1.ToString);
+//  IncAMonth();
 
  { app := TVApplication.Create;
   window := TMyWindow.Create;

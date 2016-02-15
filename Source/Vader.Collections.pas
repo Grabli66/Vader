@@ -13,7 +13,7 @@ type
 type
   ICollection<T> = interface(IEnumerable<T>)
     ['{DF82B6C9-6310-4BB9-B3AE-61A788F1A6DA}']
-    function GetSize: integer;
+    function Size: integer;
     function IsEmpty: boolean;
     procedure Add(obj: T);
     procedure Clear;
@@ -57,7 +57,7 @@ type
   public
     constructor Create(capacity: integer = 0);
     // ICollection
-    function GetSize: integer;
+    function Size: integer;
     function IsEmpty: boolean;
     procedure Add(obj: T);
     procedure Clear;
@@ -100,7 +100,7 @@ begin
   fItems[Index] := Value;
 end;
 
-function TArrayList<T>.GetSize: integer;
+function TArrayList<T>.Size: integer;
 begin
   Result := fSize;
 end;
